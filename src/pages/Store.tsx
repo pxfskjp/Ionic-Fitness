@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Store.css';
 
@@ -17,7 +17,89 @@ const Store: React.FC = () => {
             <IonTitle size="large">Store</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="Store page" />
+        <IonGrid>
+        <IonRow>
+            <IonCol>
+              <IonCard>
+                <IonCardContent>
+                  Image goes here
+                  <IonCardSubtitle>$20</IonCardSubtitle>
+                  <IonCardTitle>Item 1</IonCardTitle>
+                </IonCardContent>
+              </IonCard>
+            </IonCol>
+            <IonCol>
+              <IonCard>
+                <IonCardContent>
+                  Image goes here
+                  <IonCardSubtitle>$20</IonCardSubtitle>
+                  <IonCardTitle>Item 2</IonCardTitle>
+                </IonCardContent>
+              </IonCard>
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol>
+              <IonCard>
+                <IonCardContent>
+                  Image goes here
+                  <IonCardSubtitle>$20</IonCardSubtitle>
+                  <IonCardTitle>Item 3</IonCardTitle>
+                </IonCardContent>
+              </IonCard>
+            </IonCol>
+            <IonCol>
+              <IonCard>
+                <IonCardContent>
+                  Image goes here
+                  <IonCardSubtitle>$20</IonCardSubtitle>
+                  <IonCardTitle>Item 4</IonCardTitle>
+                </IonCardContent>
+              </IonCard>
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol>
+              <IonCard>
+                <IonCardContent>
+                  Image goes here
+                  <IonCardSubtitle>$20</IonCardSubtitle>
+                  <IonCardTitle>Item 5</IonCardTitle>
+                </IonCardContent>
+              </IonCard>
+            </IonCol>
+            <IonCol>
+              <IonCard>
+                <IonCardContent>
+                  Image goes here
+                  <IonCardSubtitle>$20</IonCardSubtitle>
+                  <IonCardTitle>Item 6</IonCardTitle>
+                </IonCardContent>
+              </IonCard>
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol>
+              <IonCard>
+                <IonCardContent>
+                  Image goes here
+                  <IonCardSubtitle>$20</IonCardSubtitle>
+                  <IonCardTitle>Item 7</IonCardTitle>
+                </IonCardContent>
+              </IonCard>
+            </IonCol>
+            <IonCol>
+              <IonCard>
+                <IonCardContent>
+                  Image goes here
+                  <IonCardSubtitle>$20</IonCardSubtitle>
+                  <IonCardTitle>Item 8</IonCardTitle>
+                </IonCardContent>
+              </IonCard>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+        {/* <ExploreContainer name="Store page" /> */}
       </IonContent>
     </IonPage>
   );
