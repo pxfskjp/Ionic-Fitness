@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonImg } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Store.css';
 
@@ -19,81 +19,81 @@ const Store: React.FC = () => {
         </IonHeader>
         <IonGrid>
         <IonRow>
-            <IonCol>
+            <IonCol size="6">
               <IonCard>
+              <IonImg src={"./assets/images/item1.jpg"} />
                 <IonCardContent>
-                  Image goes here
-                  <IonCardSubtitle>$20</IonCardSubtitle>
-                  <IonCardTitle>Item 1</IonCardTitle>
+                  <IonCardSubtitle>$24.90</IonCardSubtitle>
+                  <IonCardTitle>MUTANT ZM8+</IonCardTitle>
                 </IonCardContent>
               </IonCard>
             </IonCol>
-            <IonCol>
+            <IonCol size="6">
               <IonCard>
+              <IonImg src={"./assets/images/item2.jpg"} />
                 <IonCardContent>
-                  Image goes here
-                  <IonCardSubtitle>$20</IonCardSubtitle>
-                  <IonCardTitle>Item 2</IonCardTitle>
-                </IonCardContent>
-              </IonCard>
-            </IonCol>
-          </IonRow>
-          <IonRow>
-            <IonCol>
-              <IonCard>
-                <IonCardContent>
-                  Image goes here
-                  <IonCardSubtitle>$20</IonCardSubtitle>
-                  <IonCardTitle>Item 3</IonCardTitle>
-                </IonCardContent>
-              </IonCard>
-            </IonCol>
-            <IonCol>
-              <IonCard>
-                <IonCardContent>
-                  Image goes here
-                  <IonCardSubtitle>$20</IonCardSubtitle>
-                  <IonCardTitle>Item 4</IonCardTitle>
+                  <IonCardSubtitle>$87.90</IonCardSubtitle>
+                  <IonCardTitle>PHARMAFREAK TEST FREAK 2.0 180CAP</IonCardTitle>
                 </IonCardContent>
               </IonCard>
             </IonCol>
           </IonRow>
           <IonRow>
-            <IonCol>
+            <IonCol size="6">
               <IonCard>
+              <IonImg src={"./assets/images/item3.jpg"} />
                 <IonCardContent>
-                  Image goes here
-                  <IonCardSubtitle>$20</IonCardSubtitle>
-                  <IonCardTitle>Item 5</IonCardTitle>
+                  <IonCardSubtitle>$68.90</IonCardSubtitle>
+                  <IonCardTitle>PHARMAFREAK TEST FREAK</IonCardTitle>
                 </IonCardContent>
               </IonCard>
             </IonCol>
-            <IonCol>
+            <IonCol size="6">
               <IonCard>
+              <IonImg src={"./assets/images/item4.jpg"} />
                 <IonCardContent>
-                  Image goes here
-                  <IonCardSubtitle>$20</IonCardSubtitle>
-                  <IonCardTitle>Item 6</IonCardTitle>
+                  <IonCardSubtitle>$49.90</IonCardSubtitle>
+                  <IonCardTitle>OPTIMUM ZMA 180CAPS</IonCardTitle>
                 </IonCardContent>
               </IonCard>
             </IonCol>
           </IonRow>
           <IonRow>
-            <IonCol>
+            <IonCol size="6">
               <IonCard>
+              <IonImg src={"./assets/images/item5.jpg"} />
                 <IonCardContent>
-                  Image goes here
-                  <IonCardSubtitle>$20</IonCardSubtitle>
-                  <IonCardTitle>Item 7</IonCardTitle>
+                  <IonCardSubtitle>$29.90</IonCardSubtitle>
+                  <IonCardTitle>OPTIMUM ZMA 90CAPS</IonCardTitle>
                 </IonCardContent>
               </IonCard>
             </IonCol>
-            <IonCol>
+            <IonCol size="6">
               <IonCard>
+              <IonImg src={"./assets/images/item6.jpg"} />
                 <IonCardContent>
-                  Image goes here
-                  <IonCardSubtitle>$20</IonCardSubtitle>
-                  <IonCardTitle>Item 8</IonCardTitle>
+                  <IonCardSubtitle>$99.90</IonCardSubtitle>
+                  <IonCardTitle>DR KETO KETONES</IonCardTitle>
+                </IonCardContent>
+              </IonCard>
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol size="6">
+              <IonCard>
+              <IonImg src={"./assets/images/item7.png"} />
+                <IonCardContent>
+                  <IonCardSubtitle>$67.80</IonCardSubtitle>
+                  <IonCardTitle>PHARMAFREAK ANABOLIC FREAK TEST BOOSTER</IonCardTitle>
+                </IonCardContent>
+              </IonCard>
+            </IonCol>
+            <IonCol size="6">
+              <IonCard>
+              <IonImg src={"./assets/images/item8.jpg"} />
+                <IonCardContent>
+                  <IonCardSubtitle>$64.90</IonCardSubtitle>
+                  <IonCardTitle>NUTREX T UP BLACK TEST BOOSTER</IonCardTitle>
                 </IonCardContent>
               </IonCard>
             </IonCol>
