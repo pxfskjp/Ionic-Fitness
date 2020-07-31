@@ -1,6 +1,6 @@
 import React from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-
+import Header from '../../../components/settings/account/Header';
 import './AccountPage.css';
 
 const AccountPage: React.FC = () => {
@@ -8,7 +8,7 @@ const AccountPage: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle size="small">Account</IonTitle>
+          <Header />
         </IonToolbar>
       </IonHeader>
       <IonContent>
