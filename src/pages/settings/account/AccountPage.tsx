@@ -8,16 +8,16 @@ const AccountPage: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Account</IonTitle>
+          <IonTitle size="small">Account</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Account</IonTitle>
+            <IonTitle size="small">Account</IonTitle>
           </IonToolbar>
         </IonHeader>
-        
+
 
       </IonContent>
     </IonPage>
