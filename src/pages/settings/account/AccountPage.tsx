@@ -21,10 +21,10 @@ const AccountPage: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <IonItem button onClick={() => setShowPasswordModal(true)} color="primary">
-            <IonLabel>Change Password</IonLabel>
+          <IonLabel>Change Password</IonLabel>
         </IonItem>
-        <Modal showPasswordModal={showPasswordModal} setShowPasswordModal={setShowPasswordModal}/>
-        
+        <Modal showPasswordModal={showPasswordModal} setShowPasswordModal={setShowPasswordModal} />
+
       </IonContent>
     </IonPage>
   );
