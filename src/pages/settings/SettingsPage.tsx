@@ -1,7 +1,7 @@
 import React from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonToggle } from '@ionic/react';
-import { Redirect, useHistory } from 'react-router-dom';
 import './SettingsPage.css';
+import { useHistory } from 'react-router';
 
 const SettingsPage: React.FC = () => {
   const history = useHistory()
@@ -23,7 +23,7 @@ const SettingsPage: React.FC = () => {
             <IonLabel>Dark Mode</IonLabel>
             <IonToggle></IonToggle>
         </IonItem>
-        <IonItem button onClick={() => history.push("/settings/account")} color="primary">
+        <IonItem button onClick={() => history.push('/settings/account')} color="primary">
             <IonLabel>Account Settings</IonLabel>
         </IonItem>
 
