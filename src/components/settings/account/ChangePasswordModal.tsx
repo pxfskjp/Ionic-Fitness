@@ -1,5 +1,6 @@
 import React from 'react'
 import { IonModal, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton } from '@ionic/react'
+import './ChangePasswordModal.css'
 
 interface Props {
   showPasswordModal: boolean
