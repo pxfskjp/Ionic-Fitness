@@ -25,13 +25,18 @@ const Modal: React.FC<Props> = (props: Props) => {
             <IonInput type="password"></IonInput>
           </IonItem>
           <IonItemDivider></IonItemDivider>
-          <IonItem>
-            <IonLabel position="stacked"><IonText>New Password</IonText></IonLabel>
-            <IonInput type="password"></IonInput>
-            <IonLabel position="stacked"><IonText>Repeat New Password</IonText></IonLabel>
-            <IonInput type="password"></IonInput>
-          </IonItem>
+          <IonItemGroup>
+            <IonItem>
+              <IonLabel position="stacked"><IonText>New Password</IonText></IonLabel>
+              <IonInput type="password"></IonInput>
+            </IonItem>
+            <IonItem>
+              <IonLabel position="stacked"><IonText>Confirm Password</IonText></IonLabel>
+              <IonInput type="password"></IonInput>
+            </IonItem>
+          </IonItemGroup>
         </IonItemGroup>
+        <IonButton className="changepasswordmodal-changepassword-button" expand="block">Change Password</IonButton>
       </IonContent>
     </IonModal>
   )

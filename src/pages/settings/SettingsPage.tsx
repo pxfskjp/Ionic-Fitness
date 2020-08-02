@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonToggle, IonAlert } from '@ionic/react';
 import './SettingsPage.css';
-import { useHistory } from 'react-router';
 
 const SettingsPage: React.FC = () => {
-  const history = useHistory()
-  const [showLogout, setShowlogout] = useState(false)
+  const [showLogout, setShowlogout] = useState<boolean>(false)
 
   return (
     <IonPage>
@@ -22,9 +20,9 @@ const SettingsPage: React.FC = () => {
         </IonHeader>
         <IonItem>
             <IonLabel>Dark Mode</IonLabel>
-            <IonToggle></IonToggle>
+            <IonToggle checked={true}></IonToggle>
         </IonItem>
-        <IonItem button onClick={() => history.push('/settings/account')} color="primary">
+        <IonItem button routerLink="/settings/account" color="primary">
             <IonLabel>Account Settings</IonLabel>
         </IonItem>
         <IonItem button onClick={() => setShowlogout(true)} color="danger">Log out</IonItem>

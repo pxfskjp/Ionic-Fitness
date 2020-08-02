@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonModal, IonButton, IonItem, IonLabel, IonButtons } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonLabel } from '@ionic/react';
 import Header from '../../../components/settings/account/Header';
-import './AccountPage.css';
 import Modal from '../../../components/settings/account/ChangePasswordModal';
+import './AccountPage.css';
 
 const AccountPage: React.FC = () => {
   const [showPasswordModal, setShowPasswordModal] = useState(false)
