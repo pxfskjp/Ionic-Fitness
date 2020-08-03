@@ -2,6 +2,7 @@ import React from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 
 import './HomePage.css';
+import Post from '../../components/home/Post';
 
 const Home: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const Home: React.FC = () => {
             <IonTitle size="large">FitnessApp</IonTitle>
           </IonToolbar>
         </IonHeader>
+        <Post />
         
       </IonContent>
     </IonPage>

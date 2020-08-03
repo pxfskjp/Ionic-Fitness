@@ -1,0 +1,14 @@
+.post-header-container {
+    display: flex;
+    align-items: center;
+}
+
+.post-header-icon {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+
+.post-header-name {
+    
+}
