@@ -1,5 +1,6 @@
 import React from 'react'
-import { IonCard, IonCardContent, IonCardHeader, IonIcon, IonText, IonCardTitle, IonCardSubtitle } from '@ionic/react'
+import { IonCard, IonCardContent, IonCardHeader, IonIcon, IonCardSubtitle } from '@ionic/react'
+import {barbellOutline, bicycleOutline} from 'ionicons/icons';
 import { personCircleOutline } from 'ionicons/icons';
 import './Post.css'
 
@@ -15,11 +16,16 @@ const Post: React.FC = () => {
                         <IonCardSubtitle color="secondary">John Smith</IonCardSubtitle>
                     </div>
                 </div>
-
             </IonCardHeader>
             <IonCardContent>
                 <IonCardSubtitle>This is a post!</IonCardSubtitle>
-
+                <IonIcon icon={barbellOutline} size="large"/>
+                <IonIcon icon={bicycleOutline} size="large"/>
+                <IonIcon icon={barbellOutline} size="large"/>
+                <IonIcon icon={bicycleOutline} size="large"/>
+                <IonIcon icon={barbellOutline} size="large"/>
+                <IonIcon icon={bicycleOutline} size="large"/>
+                <IonIcon icon={barbellOutline} size="large"/>
 
             </IonCardContent>
         </IonCard>
