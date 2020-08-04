@@ -1,0 +1,19 @@
+.accountpage-header-header {
+    text-align: center;
+}
+
+.accountpage-header-title {
+    margin: 0 auto;
+    display: inline-block;
+}
+
+.accountpage-header-back {
+    float: left;
+    padding-left: 
+    5px;
+}
+
+.accountpage-header-right {
+    float: right;
+    padding: 10px;
+}
