@@ -32,7 +32,7 @@ const Home: React.FC = () => {
         </IonHeader>
         <NewPostModal showNewPostModal={showNewPostModal} setShowNewPostModal={setShowNewPostModal} />
 
-        <Post />
+        <Post username="John Smith" caption="This is a caption!" imageURL="temp.url" />
 
       </IonContent>
     </IonPage>

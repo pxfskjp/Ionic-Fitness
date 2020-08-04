@@ -4,7 +4,13 @@ import { barbellOutline, bicycleOutline } from 'ionicons/icons';
 import { personCircleOutline } from 'ionicons/icons';
 import './Post.css'
 
-const Post: React.FC = () => {
+interface Props {
+    username: string,
+    caption: string,
+    imageURL: string
+}
+
+const Post: React.FC<Props> = ({username, caption, imageURL}) => {
     return (
         <IonCard>
             <IonCardHeader style={{paddingLeft: "0px", paddingBottom: "0px"}}>
@@ -14,13 +20,13 @@ const Post: React.FC = () => {
                             <IonIcon icon={personCircleOutline} size="large"></IonIcon>
                         </div>
                         <div className="post-header-name">
-                            <IonCardSubtitle color="secondary">John Smith</IonCardSubtitle>
+                            <IonCardSubtitle color="secondary">{username}</IonCardSubtitle>
                         </div>
                     </div>
                 </IonItem>
             </IonCardHeader>
             <IonCardContent>
-                <IonCardSubtitle style={{paddingTop: "10px", paddingBottom: "5px"}}>This is a post!</IonCardSubtitle>
+                <IonCardSubtitle style={{paddingTop: "10px", paddingBottom: "5px"}}>{caption}</IonCardSubtitle>
                 <IonIcon icon={barbellOutline} size="large" />
                 <IonIcon icon={bicycleOutline} size="large" />
                 <IonIcon icon={barbellOutline} size="large" />
