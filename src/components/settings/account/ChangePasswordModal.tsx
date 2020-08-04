@@ -7,7 +7,7 @@ interface Props {
   setShowPasswordModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Modal: React.FC<Props> = (props: Props) => {
+const ChangePasswordModal: React.FC<Props> = (props: Props) => {
   return (
     <IonModal isOpen={props.showPasswordModal}>
       <IonHeader translucent>
@@ -42,4 +42,4 @@ const Modal: React.FC<Props> = (props: Props) => {
   )
 }
 
-export default Modal
+export default ChangePasswordModal

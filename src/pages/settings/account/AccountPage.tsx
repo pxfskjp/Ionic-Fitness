@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonLabel } from '@ionic/react';
 import Header from '../../../components/settings/account/Header';
-import Modal from '../../../components/settings/account/ChangePasswordModal';
+import ChangePasswordModal from '../../../components/settings/account/ChangePasswordModal';
 import './AccountPage.css';
 
 const AccountPage: React.FC = () => {
@@ -23,7 +23,7 @@ const AccountPage: React.FC = () => {
         <IonItem button onClick={() => setShowPasswordModal(true)} color="primary">
           <IonLabel>Change Password</IonLabel>
         </IonItem>
-        <Modal showPasswordModal={showPasswordModal} setShowPasswordModal={setShowPasswordModal} />
+        <ChangePasswordModal showPasswordModal={showPasswordModal} setShowPasswordModal={setShowPasswordModal} />
 
       </IonContent>
     </IonPage>

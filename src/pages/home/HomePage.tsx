@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonIcon, IonButton } from '@ionic/react';
-import { pencilOutline, mail } from 'ionicons/icons'
+import { pencilOutline } from 'ionicons/icons'
 import Post from '../../components/home/Post';
 import './HomePage.css';
+import NewPostModal from '../../components/home/NewPostModal';
 
 const Home: React.FC = () => {
+  const [showNewPostModal, setShowNewPostModal] = useState<boolean>(false)
+
   return (
     <IonPage>
       <IonHeader>
@@ -14,7 +17,9 @@ const Home: React.FC = () => {
               <IonTitle>FitnessApp</IonTitle>
             </div>
             <div className="homepage-header-button">
-              <IonButton color="light"><IonIcon size='default' icon={pencilOutline} /></IonButton>
+              <IonButton onClick={() => setShowNewPostModal(true)} color="light">
+                <IonIcon size='default' icon={pencilOutline} />
+              </IonButton>
             </div>
           </div>
         </IonToolbar>
@@ -25,6 +30,8 @@ const Home: React.FC = () => {
             <IonTitle size="large">FitnessApp</IonTitle>
           </IonToolbar>
         </IonHeader>
+        <NewPostModal showNewPostModal={showNewPostModal} setShowNewPostModal={setShowNewPostModal} />
+
         <Post />
 
       </IonContent>
