@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonToggle, IonAlert } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonToggle, IonAlert, IonIcon } from '@ionic/react';
+import { moon } from 'ionicons/icons'
 import './SettingsPage.css';
 
 const SettingsPage: React.FC = () => {
@@ -8,10 +9,6 @@ const SettingsPage: React.FC = () => {
   const toggleTheme = () => {
     document.body.classList.toggle("light")
   }
-
-  useEffect(() => {
-    document.body.classList.toggle("light")
-  }, [])
 
   return (
     <IonPage>
@@ -27,6 +24,7 @@ const SettingsPage: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <IonItem>
+          <IonIcon icon={moon} style={{marginRight: '20px'}}/>
           <IonLabel>Dark Mode</IonLabel>
           <IonToggle onIonChange={toggleTheme} checked={true}></IonToggle>
         </IonItem>
