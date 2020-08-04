@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonIcon, IonButton } from '@ionic/react';
 import { pencilOutline } from 'ionicons/icons'
 import Post from '../../components/home/Post';
-import './HomePage.css';
 import NewPostModal from '../../components/home/NewPostModal';
+import './HomePage.css';
 
 const Home: React.FC = () => {
   const [showNewPostModal, setShowNewPostModal] = useState<boolean>(false)

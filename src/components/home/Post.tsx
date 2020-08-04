@@ -10,7 +10,7 @@ interface Props {
     imageURL: string
 }
 
-const Post: React.FC<Props> = ({username, caption, imageURL}) => {
+const Post: React.FC<Props> = ({username, caption, imageURL}: Props) => {
     return (
         <IonCard>
             <IonCardHeader style={{paddingLeft: "0px", paddingBottom: "0px"}}>

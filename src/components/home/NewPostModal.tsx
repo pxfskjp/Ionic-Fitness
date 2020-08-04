@@ -22,14 +22,14 @@ const NewPostModal: React.FC<Props> = (props: Props) => {
             <IonContent>
                 <IonItemGroup>
                     <IonItem>
-                        <IonLabel position="stacked"><IonText>Description</IonText></IonLabel>
+                        <IonLabel position="stacked"><IonText>Caption</IonText></IonLabel>
                         <IonTextarea />
                     </IonItem>
                     <IonItem>
                         <IonButton expand="full">Add Image</IonButton>
                     </IonItem>
                 </IonItemGroup>
-                <IonButton style={{float: 'right', marginRight: '5px'}}>Post</IonButton>
+                <IonButton style={{ float: 'right', marginRight: '5px' }}>Post</IonButton>
             </IonContent>
         </IonModal>
     )
