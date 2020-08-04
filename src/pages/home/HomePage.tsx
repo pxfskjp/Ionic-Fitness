@@ -1,15 +1,22 @@
 import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-
-import './HomePage.css';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonIcon, IonButton } from '@ionic/react';
+import { pencilOutline, mail } from 'ionicons/icons'
 import Post from '../../components/home/Post';
+import './HomePage.css';
 
 const Home: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>FitnessApp</IonTitle>
+          <div className="homepage-header-container">
+            <div className="homepage-header-name" >
+              <IonTitle>FitnessApp</IonTitle>
+            </div>
+            <div className="homepage-header-button">
+              <IonButton color="light"><IonIcon size='default' icon={pencilOutline} /></IonButton>
+            </div>
+          </div>
         </IonToolbar>
       </IonHeader>
       <IonContent>
@@ -19,7 +26,7 @@ const Home: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <Post />
-        
+
       </IonContent>
     </IonPage>
   );

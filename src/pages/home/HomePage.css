@@ -1,0 +1,13 @@
+.homepage-header-container {
+    display: flex;
+    align-items: center;
+}
+
+.homepage-header-name {
+    display: inline-block;
+    margin-right: 40px;
+}
+
+.homepage-header-button {
+    display: inline-block;
+}
