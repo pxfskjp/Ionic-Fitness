@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { IonModal, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonItemGroup, IonItem, IonLabel, IonText, IonTextarea } from '@ionic/react'
-import { Plugins, CameraResultType } from '@capacitor/core'
+import { IonModal, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonItemGroup, IonItem, IonLabel, IonText, IonTextarea, IonImg } from '@ionic/react'
+import { Plugins, CameraResultType, CameraPhoto } from '@capacitor/core'
 import './NewPostModal.css'
 
 interface Props {
@@ -23,12 +23,15 @@ const NewPostModal: React.FC<Props> = (props: Props) => {
             resultType: CameraResultType.Uri
         })
 
-        const imageLocation = image.webPath
-        
+        const imageLocation: string | undefined = image.webPath
+        if (imageLocation !== undefined) {
+            console.log(imageLocation)
+            setImageURL(imageLocation)
+        }
     }
-    
+
     const handlePostUpload = (e: any) => {
-        
+
     }
 
     return (
@@ -48,8 +51,11 @@ const NewPostModal: React.FC<Props> = (props: Props) => {
                         <IonTextarea value={caption}
                             onIonChange={(e) => setCaption((e.target as HTMLInputElement).value)} />
                     </IonItem>
+                    {imageURL !== '' &&
+                        <IonItem><IonImg src={imageURL} /></IonItem>
+                    }
                     <IonItem>
-                        <IonButton expand="full">Add Image</IonButton>
+                        <IonButton onClick={() => getImage()} expand="full">Add Image</IonButton>
                     </IonItem>
                 </IonItemGroup>
                 <IonButton onClick={handlePostUpload} style={{ float: 'right', marginRight: '5px' }}>Post</IonButton>
