@@ -1,18 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonIcon, IonButton } from '@ionic/react';
 import { pencilOutline } from 'ionicons/icons'
 import Post from '../../components/home/Post';
 import NewPostModal from '../../components/home/NewPostModal';
+import { db } from '../../firebase';
 import './HomePage.css';
+
 
 const Home: React.FC = () => {
   const [showNewPostModal, setShowNewPostModal] = useState<boolean>(false)
 
-  const [posts, setPosts] = useState([{
-    username: "John Smith",
-    caption: "This is a caption!",
-    imageURL: "temp.image.url"
-  }])
+  const [posts, setPosts] = useState<firebase.firestore.DocumentData[]>([])
+
+  useEffect(() => {
+    db.collection('posts').onSnapshot(snapshot => {
+      setPosts(snapshot.docs.map((doc) => doc.data()))
+    })
+  }, [])
 
   return (
     <IonPage>
@@ -39,8 +43,8 @@ const Home: React.FC = () => {
         <NewPostModal showNewPostModal={showNewPostModal} setShowNewPostModal={setShowNewPostModal} />
 
         {
-          posts.map(({username, caption, imageURL}) => (
-            <Post username={username} caption={caption} imageURL={imageURL}/>
+          posts.map(({ username, caption, imageURL }) => (
+            <Post username={username} caption={caption} imageURL={imageURL} />
           ))
         }
 
