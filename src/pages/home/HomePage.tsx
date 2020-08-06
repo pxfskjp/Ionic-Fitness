@@ -8,6 +8,12 @@ import './HomePage.css';
 const Home: React.FC = () => {
   const [showNewPostModal, setShowNewPostModal] = useState<boolean>(false)
 
+  const [posts, setPosts] = useState([{
+    username: "John Smith",
+    caption: "This is a caption!",
+    imageURL: "temp.image.url"
+  }])
+
   return (
     <IonPage>
       <IonHeader>
@@ -32,7 +38,11 @@ const Home: React.FC = () => {
         </IonHeader>
         <NewPostModal showNewPostModal={showNewPostModal} setShowNewPostModal={setShowNewPostModal} />
 
-        <Post username="John Smith" caption="This is a caption!" imageURL="temp.url" />
+        {
+          posts.map(({username, caption, imageURL}) => (
+            <Post username={username} caption={caption} imageURL={imageURL}/>
+          ))
+        }
 
       </IonContent>
     </IonPage>
