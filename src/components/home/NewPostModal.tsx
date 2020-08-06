@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
-import { IonModal, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonItemGroup, IonItem, IonLabel, IonText, IonTextarea, IonImg } from '@ionic/react'
+import { IonModal, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonItemGroup, IonItem, IonLabel, IonText, IonTextarea, IonImg, IonProgressBar } from '@ionic/react'
 import { Plugins, CameraResultType, CameraPhoto } from '@capacitor/core'
+import { storage, db } from '../../firebase'
+import useFirebaseUpload from "../../hooks/useFirebaseUpload";
 import './NewPostModal.css'
 
 interface Props {
@@ -11,28 +13,52 @@ interface Props {
 const NewPostModal: React.FC<Props> = (props: Props) => {
     const { Camera } = Plugins;
 
+
+
     // need username
     const [caption, setCaption] = useState<string>('')
-    const [imageURL, setImageURL] = useState<string>('')
-    const [progress, setProgress] = useState<number>(0)
+    const [image, setImage] = useState(null)
 
-    const getImage = async () => {
-        const image = await Camera.getPhoto({
-            quality: 90,
-            allowEditing: false,
-            resultType: CameraResultType.Uri
+    const [{ dataResponse, isLoading, isError, progress }, setFileData] = useFirebaseUpload();
+
+    const handlePostUpload = () => {
+        db.collection('posts').add({
+            username: 'Temp Name',
+            caption: caption,
+            imageURL: dataResponse?.downloadUrl
         })
-
-        const imageLocation: string | undefined = image.webPath
-        if (imageLocation !== undefined) {
-            console.log(imageLocation)
-            setImageURL(imageLocation)
-        }
     }
 
-    const handlePostUpload = (e: any) => {
+    // const handleChange = (e: any) => {
+    //     if (e.target.files[0]) {
+    //         setImage(e.target.files[0])
+    //         console.log(image)
+    //     }
+    // }
 
-    }
+    // const handlePostUpload = () => {
+    //     const uploadTask = storage.ref(`images/${image.name}`).put(image)
+    //     uploadTask.on('state_changed', (snapshot: any) => {
+    //         const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
+    //         setProgress(progress)
+    //     },
+    //         (error) => {
+    //             console.log(error)
+    //         },
+    //         () => {
+    //             storage.ref('images').child(image.name).getDownloadURL()
+    //                 .then((url) => {
+    //                     db.collection('posts').add({
+    //                         caption: caption,
+    //                         imageURL: url,
+    //                         username: "Temp Name"
+    //                     })
+    //                 })
+    //         })
+    //     setProgress(0)
+    //     setCaption('')
+    //     setImage(null)
+    // }
 
     return (
         <IonModal isOpen={props.showNewPostModal}>
@@ -51,11 +77,15 @@ const NewPostModal: React.FC<Props> = (props: Props) => {
                         <IonTextarea value={caption}
                             onIonChange={(e) => setCaption((e.target as HTMLInputElement).value)} />
                     </IonItem>
-                    {imageURL !== '' &&
-                        <IonItem><IonImg src={imageURL} /></IonItem>
-                    }
+                    {isError && <div>ERROR: {isError.message}</div>}
+                    {isLoading && progress && (
+                        <IonProgressBar value={progress.value}></IonProgressBar>
+                    )}
+                    {/* {image !== null &&
+                        <IonItem><IonImg src={image.name} /></IonItem>
+                    } */}
                     <IonItem>
-                        <IonButton onClick={() => getImage()} expand="full">Add Image</IonButton>
+                        <input type="file" onChange={(e: any) => setFileData(e.target.files[0])} />
                     </IonItem>
                 </IonItemGroup>
                 <IonButton onClick={handlePostUpload} style={{ float: 'right', marginRight: '5px' }}>Post</IonButton>
