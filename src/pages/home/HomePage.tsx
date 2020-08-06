@@ -9,12 +9,14 @@ import './HomePage.css';
 
 const Home: React.FC = () => {
   const [showNewPostModal, setShowNewPostModal] = useState<boolean>(false)
-
   const [posts, setPosts] = useState<firebase.firestore.DocumentData[]>([])
 
   useEffect(() => {
     db.collection('posts').onSnapshot(snapshot => {
-      setPosts(snapshot.docs.map((doc) => doc.data()))
+      setPosts(snapshot.docs.map((doc) => ({
+        id: doc.id,
+        post: doc.data()
+      })))
     })
   }, [])
 
@@ -43,8 +45,8 @@ const Home: React.FC = () => {
         <NewPostModal showNewPostModal={showNewPostModal} setShowNewPostModal={setShowNewPostModal} />
 
         {
-          posts.map(({ username, caption, imageURL }) => (
-            <Post username={username} caption={caption} imageURL={imageURL} />
+          posts.map(({ id, post }) => (
+            <Post key={id} username={post.username} caption={post.caption} imageURL={post.imageURL} />
           ))
         }
 
