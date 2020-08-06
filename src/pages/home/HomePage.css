@@ -5,9 +5,10 @@
 
 .homepage-header-name {
     display: inline-block;
-    margin-right: 40px;
 }
 
 .homepage-header-button {
-    display: inline-block;
+    display: block;
+    margin-left: auto;
+    margin-right: 10px;
 }
