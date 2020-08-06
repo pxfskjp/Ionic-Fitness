@@ -5,9 +5,11 @@ import './SettingsPage.css';
 
 const SettingsPage: React.FC = () => {
   const [showLogout, setShowlogout] = useState<boolean>(false)
+  const [checked, setChecked] = useState<boolean>(false)
 
   const toggleTheme = () => {
     document.body.classList.toggle("light")
+    setChecked(!checked)
   }
 
   return (
@@ -26,7 +28,7 @@ const SettingsPage: React.FC = () => {
         <IonItem>
           <IonIcon icon={moon} style={{marginRight: '20px'}}/>
           <IonLabel>Dark Mode</IonLabel>
-          <IonToggle onIonChange={toggleTheme} checked={true}></IonToggle>
+          <IonToggle onIonChange={toggleTheme} checked={checked}></IonToggle>
         </IonItem>
         <IonItem button routerLink="/settings/account" color="primary">
           <IonLabel>Account Settings</IonLabel>
