@@ -20,6 +20,7 @@ function FirebaseFileUploadApi(): [
     progress: ProgressResponse;
   },
   Function,
+  Function,
   Function
 ] {
   // the data from the file upload response
@@ -116,6 +117,7 @@ function FirebaseFileUploadApi(): [
   return [
     { dataResponse, isLoading, isError, progress },
     setFileData,
+    setDataResponse,
     clearError
   ];
 }

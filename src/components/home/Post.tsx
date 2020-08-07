@@ -1,6 +1,5 @@
 import React from 'react'
-import { IonCard, IonCardContent, IonCardHeader, IonIcon, IonCardSubtitle, IonItem } from '@ionic/react'
-import { barbellOutline, bicycleOutline } from 'ionicons/icons';
+import { IonCard, IonCardContent, IonCardHeader, IonIcon, IonCardSubtitle, IonItem, IonImg } from '@ionic/react'
 import { personCircleOutline } from 'ionicons/icons';
 import './Post.css'
 
@@ -27,12 +26,7 @@ const Post: React.FC<Props> = ({username, caption, imageURL}: Props) => {
             </IonCardHeader>
             <IonCardContent>
                 <IonCardSubtitle style={{paddingTop: "10px", paddingBottom: "5px"}}>{caption}</IonCardSubtitle>
-                <IonIcon icon={barbellOutline} size="large" />
-                <IonIcon icon={bicycleOutline} size="large" />
-                <IonIcon icon={barbellOutline} size="large" />
-                <IonIcon icon={bicycleOutline} size="large" />
-                <IonIcon icon={barbellOutline} size="large" />
-                <IonIcon icon={bicycleOutline} size="large" />
+                <IonImg src={imageURL}/>
             </IonCardContent>
         </IonCard>
     )

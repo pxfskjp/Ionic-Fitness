@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { IonModal, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonItemGroup, IonItem, IonLabel, IonText, IonTextarea, IonImg, IonProgressBar } from '@ionic/react'
-import { Plugins, CameraResultType, CameraPhoto } from '@capacitor/core'
-import { storage, db, firebase } from '../../firebase'
+import { db, firebase } from '../../firebase'
 import useFirebaseUpload from "../../hooks/useFirebaseUpload";
 import './NewPostModal.css'
 
@@ -11,13 +10,10 @@ interface Props {
 }
 
 const NewPostModal: React.FC<Props> = (props: Props) => {
-    const { Camera } = Plugins;
 
     // need username
     const [caption, setCaption] = useState<string>('')
-    const [image, setImage] = useState(null)
-
-    const [{ dataResponse, isLoading, isError, progress }, setFileData] = useFirebaseUpload();
+    const [{ dataResponse, isLoading, isError, progress }, setFileData, setDataResponse] = useFirebaseUpload();
 
     const handlePostUpload = () => {
         console.log(dataResponse?.downloadUrl)
@@ -27,38 +23,9 @@ const NewPostModal: React.FC<Props> = (props: Props) => {
             caption: caption,
             imageURL: dataResponse?.downloadUrl
         })
+
+
     }
-
-    // const handleChange = (e: any) => {
-    //     if (e.target.files[0]) {
-    //         setImage(e.target.files[0])
-    //         console.log(image)
-    //     }
-    // }
-
-    // const handlePostUpload = () => {
-    //     const uploadTask = storage.ref(`images/${image.name}`).put(image)
-    //     uploadTask.on('state_changed', (snapshot: any) => {
-    //         const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
-    //         setProgress(progress)
-    //     },
-    //         (error) => {
-    //             console.log(error)
-    //         },
-    //         () => {
-    //             storage.ref('images').child(image.name).getDownloadURL()
-    //                 .then((url) => {
-    //                     db.collection('posts').add({
-    //                         caption: caption,
-    //                         imageURL: url,
-    //                         username: "Temp Name"
-    //                     })
-    //                 })
-    //         })
-    //     setProgress(0)
-    //     setCaption('')
-    //     setImage(null)
-    // }
 
     return (
         <IonModal isOpen={props.showNewPostModal}>
@@ -66,7 +33,11 @@ const NewPostModal: React.FC<Props> = (props: Props) => {
                 <IonToolbar>
                     <IonTitle size="small">Create New Post</IonTitle>
                     <IonButtons slot="end">
-                        <IonButton onClick={() => props.setShowNewPostModal(false)}>Close</IonButton>
+                        <IonButton onClick={() => {
+                            props.setShowNewPostModal(false)
+                            setDataResponse(null)
+                            setCaption('')
+                        }}>Close</IonButton>
                     </IonButtons>
                 </IonToolbar>
             </IonHeader>
@@ -81,9 +52,9 @@ const NewPostModal: React.FC<Props> = (props: Props) => {
                     {isLoading && progress && (
                         <IonProgressBar value={progress.value}></IonProgressBar>
                     )}
-                    {/* {image !== null &&
-                        <IonItem><IonImg src={image.name} /></IonItem>
-                    } */}
+                    {dataResponse?.downloadUrl !== null &&
+                        <IonItem><IonImg src={dataResponse?.downloadUrl} /></IonItem>
+                    }
                     <IonItem>
                         <input type="file" onChange={(e: any) => setFileData(e.target.files[0])} />
                     </IonItem>
