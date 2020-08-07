@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { IonModal, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonItemGroup, IonItem, IonLabel, IonText, IonTextarea, IonImg, IonProgressBar } from '@ionic/react'
 import { Plugins, CameraResultType, CameraPhoto } from '@capacitor/core'
-import { storage, db } from '../../firebase'
+import { storage, db, firebase } from '../../firebase'
 import useFirebaseUpload from "../../hooks/useFirebaseUpload";
 import './NewPostModal.css'
 
@@ -13,8 +13,6 @@ interface Props {
 const NewPostModal: React.FC<Props> = (props: Props) => {
     const { Camera } = Plugins;
 
-
-
     // need username
     const [caption, setCaption] = useState<string>('')
     const [image, setImage] = useState(null)
@@ -22,7 +20,9 @@ const NewPostModal: React.FC<Props> = (props: Props) => {
     const [{ dataResponse, isLoading, isError, progress }, setFileData] = useFirebaseUpload();
 
     const handlePostUpload = () => {
+        console.log(dataResponse?.downloadUrl)
         db.collection('posts').add({
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
             username: 'Temp Name',
             caption: caption,
             imageURL: dataResponse?.downloadUrl
