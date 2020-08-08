@@ -34,7 +34,7 @@ const Post: React.FC<Props> = ({ username, caption, imageURL }: Props) => {
             </IonCardContent>
 
             <ViewPostModal 
-                image={imageURL}
+                post={{username, caption, imageURL}}
                 showViewPostModal={showViewPostModal} 
                 setShowViewNewPostModal={setShowViewPostModal} 
             />

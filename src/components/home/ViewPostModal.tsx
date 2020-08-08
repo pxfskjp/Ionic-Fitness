@@ -1,8 +1,8 @@
 import React from 'react'
-import { IonModal, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonImg } from '@ionic/react'
+import { IonModal, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonImg, IonVirtualScroll, IonItem, IonText } from '@ionic/react'
 
 interface Props {
-    image: string
+    post: any
     showViewPostModal: boolean
     setShowViewNewPostModal: React.Dispatch<React.SetStateAction<boolean>>
 }
@@ -13,8 +13,7 @@ const ViewPostModal: React.FC<Props> = (props: Props) => {
         <IonModal isOpen={props.showViewPostModal}>
             <IonHeader translucent>
                 <IonToolbar>
-                    <IonTitle size="small">Create New Post</IonTitle>
-                    <IonButtons slot="end">
+                    <IonButtons slot="start">
                         <IonButton onClick={() => {
                             props.setShowViewNewPostModal(false)
                         }}>Close</IonButton>
@@ -22,8 +21,19 @@ const ViewPostModal: React.FC<Props> = (props: Props) => {
                 </IonToolbar>
             </IonHeader>
             <IonContent>
-                <IonImg src={props.image}/>
-                
+                <IonItem>
+                    <IonImg src={props.post.imageURL} />
+                </IonItem>
+                <IonItem>
+                    <div>
+                        <div style={{}}>
+                            <IonText color='primary' style={{ fontWeight: 'bold' }}><p>{props.post.username}</p></IonText>
+                        </div>
+                        <div style={{}}>
+                            <IonText><p>{props.post.caption}</p></IonText>
+                        </div>
+                    </div>
+                </IonItem>
             </IonContent>
         </IonModal>
     )
