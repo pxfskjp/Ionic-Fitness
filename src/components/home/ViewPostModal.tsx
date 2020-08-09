@@ -1,5 +1,5 @@
 import React from 'react'
-import { IonModal, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonImg, IonVirtualScroll, IonItem, IonText } from '@ionic/react'
+import { IonModal, IonHeader, IonToolbar, IonButtons, IonButton, IonContent, IonImg, IonItem, IonText } from '@ionic/react'
 
 interface Props {
     post: any

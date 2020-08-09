@@ -23,8 +23,6 @@ const NewPostModal: React.FC<Props> = (props: Props) => {
             caption: caption,
             imageURL: dataResponse?.downloadUrl
         })
-
-
     }
 
     return (

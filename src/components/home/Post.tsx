@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { IonCard, IonCardContent, IonCardHeader, IonIcon, IonCardSubtitle, IonItem, IonImg, IonPopover } from '@ionic/react'
+import { IonCard, IonCardContent, IonCardHeader, IonIcon, IonCardSubtitle, IonItem, IonImg } from '@ionic/react'
 import { personCircleOutline } from 'ionicons/icons';
 import './Post.css'
 import ViewPostModal from './ViewPostModal';
