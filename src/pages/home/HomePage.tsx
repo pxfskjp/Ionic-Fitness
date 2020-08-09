@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonIcon, IonButton } from '@ionic/react';
-import { pencilOutline } from 'ionicons/icons'
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonIcon, IonButton, IonProgressBar, IonRefresher, IonRefresherContent } from '@ionic/react';
+import { pencilOutline, chevronDownCircleOutline } from 'ionicons/icons'
 import Post from '../../components/home/Post';
 import NewPostModal from '../../components/home/NewPostModal';
 import { db } from '../../firebase';
@@ -9,16 +9,27 @@ import './HomePage.css';
 
 const Home: React.FC = () => {
   const [showNewPostModal, setShowNewPostModal] = useState<boolean>(false)
-  const [posts, setPosts] = useState<firebase.firestore.DocumentData[]>([])
+  const [posts, setPosts] = useState<firebase.firestore.DocumentData[]>()
 
   useEffect(() => {
+    pullPosts()
+  }, [])
+
+  const doRefresh = (event: CustomEvent) => {
+    setTimeout(() => {
+      pullPosts()
+      event.detail.complete();
+    }, 2000);
+  }
+
+  const pullPosts = () => {
     db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
       setPosts(snapshot.docs.map((doc) => ({
         id: doc.id,
         post: doc.data()
       })))
     })
-  }, [])
+  }
 
   return (
     <IonPage>
@@ -44,7 +55,16 @@ const Home: React.FC = () => {
         </IonHeader>
         <NewPostModal showNewPostModal={showNewPostModal} setShowNewPostModal={setShowNewPostModal} />
 
-        {
+        <IonRefresher slot="fixed" onIonRefresh={doRefresh} pullFactor={0.5} pullMin={100} pullMax={200}>
+          <IonRefresherContent
+            pullingIcon={chevronDownCircleOutline}
+            pullingText="Pull to refresh"
+            refreshingSpinner="circles"
+            refreshingText="">
+          </IonRefresherContent>
+        </IonRefresher>
+
+        {posts &&
           posts.map(({ id, post }) => (
             <Post key={id} username={post.username} caption={post.caption} imageURL={post.imageURL} />
           ))
