@@ -1,6 +1,6 @@
 import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent, IonImg } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonGrid, IonRow } from '@ionic/react';
+import Item from '../components/Item';
 import './Store.css';
 
 const Store: React.FC = () => {
@@ -18,85 +18,21 @@ const Store: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <IonGrid>
-        <IonRow>
-            <IonCol size="6">
-              <IonCard>
-              <IonImg src={"./assets/images/item1.jpg"} />
-                <IonCardContent>
-                  <IonCardSubtitle>$24.90</IonCardSubtitle>
-                  <IonCardTitle>MUTANT ZM8+</IonCardTitle>
-                </IonCardContent>
-              </IonCard>
-            </IonCol>
-            <IonCol size="6">
-              <IonCard>
-              <IonImg src={"./assets/images/item2.jpg"} />
-                <IonCardContent>
-                  <IonCardSubtitle>$87.90</IonCardSubtitle>
-                  <IonCardTitle>PHARMAFREAK TEST FREAK 2.0 180CAP</IonCardTitle>
-                </IonCardContent>
-              </IonCard>
-            </IonCol>
+          <IonRow>
+            <Item name="MUTANT ZM8+" price="$24.90" image="./assets/images/item1.jpg" />
+            <Item name="PHARMAFREAK TEST FREAK 2.0 180CAP" price="$87.90" image="./assets/images/item2.jpg" />
           </IonRow>
           <IonRow>
-            <IonCol size="6">
-              <IonCard>
-              <IonImg src={"./assets/images/item3.jpg"} />
-                <IonCardContent>
-                  <IonCardSubtitle>$68.90</IonCardSubtitle>
-                  <IonCardTitle>PHARMAFREAK TEST FREAK</IonCardTitle>
-                </IonCardContent>
-              </IonCard>
-            </IonCol>
-            <IonCol size="6">
-              <IonCard>
-              <IonImg src={"./assets/images/item4.jpg"} />
-                <IonCardContent>
-                  <IonCardSubtitle>$49.90</IonCardSubtitle>
-                  <IonCardTitle>OPTIMUM ZMA 180CAPS</IonCardTitle>
-                </IonCardContent>
-              </IonCard>
-            </IonCol>
+            <Item name="PHARMAFREAK TEST FREAK" price="$68.90" image="./assets/images/item3.jpg" />
+            <Item name="OPTIMUM ZMA 180CAPS" price="$49.90" image="./assets/images/item4.jpg" />
           </IonRow>
           <IonRow>
-            <IonCol size="6">
-              <IonCard>
-              <IonImg src={"./assets/images/item5.jpg"} />
-                <IonCardContent>
-                  <IonCardSubtitle>$29.90</IonCardSubtitle>
-                  <IonCardTitle>OPTIMUM ZMA 90CAPS</IonCardTitle>
-                </IonCardContent>
-              </IonCard>
-            </IonCol>
-            <IonCol size="6">
-              <IonCard>
-              <IonImg src={"./assets/images/item6.jpg"} />
-                <IonCardContent>
-                  <IonCardSubtitle>$99.90</IonCardSubtitle>
-                  <IonCardTitle>DR KETO KETONES</IonCardTitle>
-                </IonCardContent>
-              </IonCard>
-            </IonCol>
+          <Item name="OPTIMUM ZMA 90CAPS" price="$29.90" image="./assets/images/item5.jpg" />
+            <Item name="DR KETO KETONES" price="$99.90" image="./assets/images/item6.jpg" />
           </IonRow>
           <IonRow>
-            <IonCol size="6">
-              <IonCard>
-              <IonImg src={"./assets/images/item7.png"} />
-                <IonCardContent>
-                  <IonCardSubtitle>$67.80</IonCardSubtitle>
-                  <IonCardTitle>PHARMAFREAK ANABOLIC FREAK TEST BOOSTER</IonCardTitle>
-                </IonCardContent>
-              </IonCard>
-            </IonCol>
-            <IonCol size="6">
-              <IonCard>
-              <IonImg src={"./assets/images/item8.jpg"} />
-                <IonCardContent>
-                  <IonCardSubtitle>$64.90</IonCardSubtitle>
-                  <IonCardTitle>NUTREX T UP BLACK TEST BOOSTER</IonCardTitle>
-                </IonCardContent>
-              </IonCard>
-            </IonCol>
+          <Item name="PHARMAFREAK ANABOLIC FREAK TEST BOOSTER" price="$67.80" image="./assets/images/item7.png" />
+            <Item name="NUTREX T UP BLACK TEST BOOSTER" price="$64.90" image="./assets/images/item8.jpg" />
           </IonRow>
         </IonGrid>
         {/* <ExploreContainer name="Store page" /> */}
