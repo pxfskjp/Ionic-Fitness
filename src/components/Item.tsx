@@ -13,7 +13,7 @@ interface ContainerProps {
 const Item: React.FC<ContainerProps> = ({ name, price, image }) => {
     return (
         <IonCol size="6">
-            <IonCard type="button" href="store">
+            <IonCard type="button" href="productview">
                 <IonImg src={image} />
                 <IonCardContent>
                     <IonCardSubtitle>{price}</IonCardSubtitle>

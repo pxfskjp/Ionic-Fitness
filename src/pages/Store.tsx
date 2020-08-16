@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonGrid, IonRow, IonSearchbar } from '@ionic/react';
 import Item from '../components/Item';
 import './Store.css';
@@ -20,7 +20,7 @@ const Store: React.FC = () => {
           </IonToolbar>
         </IonHeader>
         <IonToolbar>
-          <IonSearchbar value={searchText} onIonChange={e => setSearchText(e.detail.value!) } placeholder="Product search"></IonSearchbar>
+          <IonSearchbar value={searchText} onIonChange={e => setSearchText(e.detail.value!)} placeholder="Product search"></IonSearchbar>
         </IonToolbar>
         <IonGrid>
           <IonRow>
@@ -32,11 +32,11 @@ const Store: React.FC = () => {
             <Item name="OPTIMUM ZMA 180CAPS" price="$49.90" image="./assets/images/item4.jpg" />
           </IonRow>
           <IonRow>
-          <Item name="OPTIMUM ZMA 90CAPS" price="$29.90" image="./assets/images/item5.jpg" />
+            <Item name="OPTIMUM ZMA 90CAPS" price="$29.90" image="./assets/images/item5.jpg" />
             <Item name="DR KETO KETONES" price="$99.90" image="./assets/images/item6.jpg" />
           </IonRow>
           <IonRow>
-          <Item name="PHARMAFREAK ANABOLIC FREAK TEST BOOSTER" price="$67.80" image="./assets/images/item7.png" />
+            <Item name="PHARMAFREAK ANABOLIC FREAK TEST BOOSTER" price="$67.80" image="./assets/images/item7.png" />
             <Item name="NUTREX T UP BLACK TEST BOOSTER" price="$64.90" image="./assets/images/item8.jpg" />
           </IonRow>
         </IonGrid>
