@@ -1,9 +1,11 @@
-import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonGrid, IonRow } from '@ionic/react';
+import React, {useState, useEffect } from 'react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonGrid, IonRow, IonSearchbar } from '@ionic/react';
 import Item from '../components/Item';
 import './Store.css';
 
 const Store: React.FC = () => {
+  const [searchText, setSearchText] = useState('');
+
   return (
     <IonPage>
       <IonHeader>
@@ -17,6 +19,9 @@ const Store: React.FC = () => {
             <IonTitle size="large">Store</IonTitle>
           </IonToolbar>
         </IonHeader>
+        <IonToolbar>
+          <IonSearchbar value={searchText} onIonChange={e => setSearchText(e.detail.value!) } placeholder="Product search"></IonSearchbar>
+        </IonToolbar>
         <IonGrid>
           <IonRow>
             <Item name="MUTANT ZM8+" price="$24.90" image="./assets/images/item1.jpg" />
@@ -35,7 +40,6 @@ const Store: React.FC = () => {
             <Item name="NUTREX T UP BLACK TEST BOOSTER" price="$64.90" image="./assets/images/item8.jpg" />
           </IonRow>
         </IonGrid>
-        {/* <ExploreContainer name="Store page" /> */}
       </IonContent>
     </IonPage>
   );
