@@ -1,6 +1,5 @@
 import React from 'react';
 import { IonCol, IonCard, IonCardSubtitle, IonCardTitle, IonCardContent, IonImg } from '@ionic/react';
-import './ExploreContainer.css';
 
 interface ContainerProps {
     name: string;
