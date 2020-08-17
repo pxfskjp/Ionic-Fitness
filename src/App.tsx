@@ -12,8 +12,12 @@ import {
 import { IonReactRouter } from '@ionic/react-router';
 import { ellipse, square, home, cog } from 'ionicons/icons';
 import HomePage from './pages/home/HomePage';
+import { ellipse, cart, triangle } from 'ionicons/icons';
+import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
+import Store from './pages/Store';
+import ProductView from './pages/ProductView';
+import Checkout from './pages/Checkout';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -47,6 +51,10 @@ const App: React.FC = () => (
           <Route path="/settings" component={SettingsPage} exact={true} />
           <Route path="/settings/account" component={AccountPage} exact={true} />
           <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
+          <Route path="/store" component={Store} />
+          <Route path="/productview" component={ProductView} />
+          <Route path="/checkout" component={Checkout} />
+          <Route path="/" render={() => <Redirect to="/tab1" />} exact={true} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="Home" href="/home">
@@ -56,9 +64,9 @@ const App: React.FC = () => (
             <IonIcon icon={ellipse} />
             <IonLabel>Tab 2</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon icon={square} />
-            <IonLabel>Tab 3</IonLabel>
+          <IonTabButton tab="store" href="/store">
+            <IonIcon icon={cart} />
+            <IonLabel>Store</IonLabel>
           </IonTabButton>
           <IonTabButton tab="settings" href="/settings">
             <IonIcon icon={cog} />
