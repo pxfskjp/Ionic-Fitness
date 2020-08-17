@@ -23,7 +23,7 @@ const ProductView: React.FC = () => {
           <IonCardContent>
             <IonCardSubtitle>$24.90</IonCardSubtitle>
             <IonCardTitle>MUTANT ZM8+</IonCardTitle>
-            <IonButton expand="block" fill="solid">Buy</IonButton>
+            <IonButton expand="block" fill="solid" href="checkout">Buy</IonButton>
             <IonCardContent>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu mattis libero, eget tincidunt libero. Suspendisse ut orci consectetur, faucibus lacus in, suscipit libero. Aenean in arcu sit amet enim semper interdum eget at libero. Fusce ut augue ut lectus cursus tincidunt. Proin ac iaculis nulla. Praesent placerat in nibh et maximus. Vestibulum dignissim fringilla massa, eu feugiat magna tincidunt quis. Donec tincidunt in massa vitae imperdiet. In vitae venenatis metus. Proin consectetur sollicitudin lacus ac laoreet. Vivamus nec mauris varius, tempus velit et, euismod dolor. Vivamus vitae nisi imperdiet, lobortis felis in, mattis elit. Phasellus placerat facilisis felis eget tristique.</IonCardContent>
           </IonCardContent>
         </IonCard>
