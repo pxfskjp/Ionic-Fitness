@@ -10,7 +10,7 @@ import {
   IonTabs
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, cart, home, cog } from 'ionicons/icons';
+import { ellipse, cart, home, cog, person } from 'ionicons/icons';
 import HomePage from './pages/home/HomePage';
 import Tab2 from './pages/Tab2';
 import Store from './pages/Store';
@@ -57,8 +57,8 @@ const App: React.FC = () => (
             <IonIcon icon={home} />
           </IonTabButton>
           <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
+            <IonIcon icon={person} />
+            <IonLabel>Profile</IonLabel>
           </IonTabButton>
           <IonTabButton tab="store" href="/store">
             <IonIcon icon={cart} />
@@ -74,3 +74,4 @@ const App: React.FC = () => (
 );
 
 export default App;
+
