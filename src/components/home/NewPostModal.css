@@ -1,0 +1,8 @@
+.newpost-fileinput {
+    display: inline-block;
+    padding: 6px 12px;
+}
+
+input[type="file"] {
+    display: none;
+}

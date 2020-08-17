@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { IonModal, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonItemGroup, IonItem, IonLabel, IonText, IonTextarea, IonImg, IonProgressBar } from '@ionic/react'
+import { IonModal, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonItemGroup, IonItem, IonLabel, IonText, IonTextarea, IonImg, IonProgressBar, IonIcon } from '@ionic/react'
 import { db, firebase } from '../../firebase'
 import useFirebaseUpload from "../../hooks/useFirebaseUpload";
+import { imageOutline } from 'ionicons/icons'
 import './NewPostModal.css'
 
 interface Props {
@@ -53,8 +54,11 @@ const NewPostModal: React.FC<Props> = (props: Props) => {
                     {dataResponse?.downloadUrl !== null &&
                         <IonItem><IonImg src={dataResponse?.downloadUrl} /></IonItem>
                     }
-                    <IonItem>
-                        <input type="file" onChange={(e: any) => setFileData(e.target.files[0])} />
+                    <IonItem color="primary">
+                        <label htmlFor="file-upload" className="newpost-fileinput">
+                            <IonIcon color="light" size="large" icon={imageOutline} />
+                        </label>
+                        <input id="file-upload" type="file" onChange={(e: any) => setFileData(e.target.files[0])} />
                     </IonItem>
                 </IonItemGroup>
                 <IonButton onClick={handlePostUpload} style={{ float: 'right', marginRight: '5px' }}>Post</IonButton>

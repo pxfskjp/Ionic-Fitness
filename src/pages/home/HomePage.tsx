@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonIcon, IonButton, IonRefresher, IonRefresherContent } from '@ionic/react';
-import { pencilOutline, chevronDownCircleOutline } from 'ionicons/icons'
+import { pencilOutline, barbellOutline } from 'ionicons/icons'
 import Post from '../../components/home/Post';
 import NewPostModal from '../../components/home/NewPostModal';
 import { db } from '../../firebase';
@@ -57,7 +57,7 @@ const Home: React.FC = () => {
 
         <IonRefresher slot="fixed" onIonRefresh={doRefresh} pullFactor={0.5} pullMin={100} pullMax={200}>
           <IonRefresherContent
-            pullingIcon={chevronDownCircleOutline}
+            pullingIcon={ barbellOutline }
             pullingText="Pull to refresh"
             refreshingSpinner="circles"
             refreshingText="">

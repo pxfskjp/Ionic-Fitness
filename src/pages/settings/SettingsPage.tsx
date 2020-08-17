@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonToggle, IonAlert, IonIcon } from '@ionic/react';
 import { moon } from 'ionicons/icons'
 import './SettingsPage.css';
@@ -8,7 +8,7 @@ const SettingsPage: React.FC = () => {
   const [checked, setChecked] = useState<boolean>(false)
 
   const toggleTheme = () => {
-    document.body.classList.toggle("light")
+    document.body.classList.toggle("dark")
     setChecked(!checked)
   }
 
