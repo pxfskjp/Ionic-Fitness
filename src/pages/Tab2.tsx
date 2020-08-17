@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonAvatar, IonButton, IonLabel, IonItem, IonList, IonInput, IonText, IonGrid, IonRow, IonCol, IonIcon, IonBadge } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonAvatar, IonButton, IonLabel, IonItem, IonList, IonInput, IonText, IonGrid, IonRow, IonCol, IonIcon, IonBadge, IonMenu } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Tab2.css';
 import { logoFacebook, logoInstagram, logoGoogle } from 'ionicons/icons';
@@ -12,9 +12,8 @@ const Tab2: React.FC = () => {
           <IonGrid>
             <IonRow>
               <IonCol><IonTitle>Profile</IonTitle></IonCol>
-              <IonCol><IonButton size = "small">Edit</IonButton></IonCol>
+              <IonCol><IonButton size = "small" >Options</IonButton></IonCol>
             </IonRow>
-            
           </IonGrid>
           
         </IonToolbar>
@@ -36,7 +35,7 @@ const Tab2: React.FC = () => {
           </IonRow>
         </IonGrid>
         
-        <IonText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</IonText>
+        <IonText>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</IonText>
         
         <IonList lines="full" class="ion-no-margin ion-no-padding">
           
@@ -71,11 +70,6 @@ const Tab2: React.FC = () => {
           <IonItem><IonRow><IonIcon icon = {logoGoogle}></IonIcon><IonLabel>Lorem Ipsum</IonLabel></IonRow></IonItem>
         </IonGrid>
         </IonList>
-       
-        
-        
-        
-
       </IonContent>
     </IonPage>
   );
