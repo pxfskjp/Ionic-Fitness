@@ -10,6 +10,7 @@ import './HomePage.css';
 const Home: React.FC = () => {
   const [showNewPostModal, setShowNewPostModal] = useState<boolean>(false)
   const [posts, setPosts] = useState<firebase.firestore.DocumentData[]>()
+  const [numberPosts, setNumberPosts] = useState<number>(0)
 
   useEffect(() => {
     pullPosts()
@@ -30,6 +31,10 @@ const Home: React.FC = () => {
       })))
     })
   }
+
+  useEffect(() => {
+    console.log('posts')
+  }, [posts])
 
   return (
     <IonPage>
