@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonIcon, IonButton, IonRefresher, IonRefresherContent } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonIcon, IonButton, IonRefresher, IonRefresherContent, IonToast } from '@ionic/react';
 import { pencilOutline, barbellOutline } from 'ionicons/icons'
 import Post from '../../components/home/Post';
 import NewPostModal from '../../components/home/NewPostModal';
@@ -10,15 +10,17 @@ import './HomePage.css';
 const Home: React.FC = () => {
   const [showNewPostModal, setShowNewPostModal] = useState<boolean>(false)
   const [posts, setPosts] = useState<firebase.firestore.DocumentData[]>()
+  const [showNotification, setShowNotification] = useState<boolean>(false)
 
   useEffect(() => {
     pullPosts()
 
     // Look for changes to the firestore
     db.collection("posts").onSnapshot((snapshot) => {
+      console.log(snapshot.size)
       snapshot.docChanges().forEach((change) => {
         if (change.type === "added") {
-          console.log("New post: ", change.doc.data().caption);
+          setShowNotification(true)
         }
       })
     })
@@ -78,6 +80,14 @@ const Home: React.FC = () => {
             <Post key={id} username={post.username} caption={post.caption} imageURL={post.imageURL} />
           ))
         }
+
+        <IonToast
+          isOpen={showNotification}
+          onDidDismiss={() => setShowNotification(false)}
+          message="A new post has arrived!"
+          animated={true}
+          duration={5000}
+        />
 
       </IonContent>
     </IonPage>
