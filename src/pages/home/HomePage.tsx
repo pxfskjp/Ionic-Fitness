@@ -3,17 +3,25 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonIcon, IonButto
 import { pencilOutline, barbellOutline } from 'ionicons/icons'
 import Post from '../../components/home/Post';
 import NewPostModal from '../../components/home/NewPostModal';
-import { db } from '../../firebase';
+import { db, firebase } from '../../firebase';
 import './HomePage.css';
 
 
 const Home: React.FC = () => {
   const [showNewPostModal, setShowNewPostModal] = useState<boolean>(false)
   const [posts, setPosts] = useState<firebase.firestore.DocumentData[]>()
-  const [numberPosts, setNumberPosts] = useState<number>(0)
 
   useEffect(() => {
     pullPosts()
+
+    // Look for changes to the firestore
+    db.collection("posts").onSnapshot((snapshot) => {
+      snapshot.docChanges().forEach((change) => {
+        if (change.type === "added") {
+          console.log("New post: ", change.doc.data().caption);
+        }
+      })
+    })
   }, [])
 
   const doRefresh = (event: CustomEvent) => {
@@ -31,10 +39,6 @@ const Home: React.FC = () => {
       })))
     })
   }
-
-  useEffect(() => {
-    console.log('posts')
-  }, [posts])
 
   return (
     <IonPage>
@@ -62,7 +66,7 @@ const Home: React.FC = () => {
 
         <IonRefresher slot="fixed" onIonRefresh={doRefresh} pullFactor={0.5} pullMin={100} pullMax={200}>
           <IonRefresherContent
-            pullingIcon={ barbellOutline }
+            pullingIcon={barbellOutline}
             pullingText="Pull to refresh"
             refreshingSpinner="circles"
             refreshingText="">
