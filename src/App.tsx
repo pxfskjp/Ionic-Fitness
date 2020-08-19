@@ -37,6 +37,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import SettingsPage from './pages/settings/SettingsPage';
 import AccountPage from './pages/settings/account/AccountPage';
+import Register from './pages/Register';
 
 const App: React.FC = () => (
   <IonApp>
@@ -51,6 +52,7 @@ const App: React.FC = () => (
           <Route path="/store" component={Store} />
           <Route path="/productview" component={ProductView} />
           <Route path="/checkout" component={Checkout} />
+          <Route path="/register" component={Register}/>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="Home" href="/home">

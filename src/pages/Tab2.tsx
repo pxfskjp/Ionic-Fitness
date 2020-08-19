@@ -11,7 +11,7 @@ const Tab2: React.FC = () => {
           <IonGrid>
             <IonRow>
               <IonCol><IonTitle>Profile</IonTitle></IonCol>
-              <IonCol><IonButton size = "small" >Options</IonButton></IonCol>
+              <IonCol><IonButton size = "small" href="register">Options</IonButton></IonCol>
             </IonRow>
           </IonGrid>
           
