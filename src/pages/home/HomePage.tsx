@@ -1,18 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonIcon, IonButton, IonRefresher, IonRefresherContent } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonIcon, IonButton, IonRefresher, IonRefresherContent, IonToast } from '@ionic/react';
 import { pencilOutline, barbellOutline } from 'ionicons/icons'
 import Post from '../../components/home/Post';
 import NewPostModal from '../../components/home/NewPostModal';
-import { db } from '../../firebase';
+import useFirebaseDatabase from "../../hooks/useFirebaseDatabasePull";
+import { db, firebase } from '../../firebase';
 import './HomePage.css';
 
 
 const Home: React.FC = () => {
   const [showNewPostModal, setShowNewPostModal] = useState<boolean>(false)
-  const [posts, setPosts] = useState<firebase.firestore.DocumentData[]>()
+  const [showNotification, setShowNotification] = useState<boolean>(false)
+  const [{ posts }, pullPosts] = useFirebaseDatabase()
 
   useEffect(() => {
     pullPosts()
+
+    // Look for changes to the firestore
+    db.collection("posts").onSnapshot((snapshot) => {
+      console.log(snapshot.size)
+      snapshot.docChanges().forEach((change) => {
+        if (change.type === "added") {
+          setShowNotification(true)
+        }
+      })
+    })
   }, [])
 
   const doRefresh = (event: CustomEvent) => {
@@ -20,15 +32,6 @@ const Home: React.FC = () => {
       pullPosts()
       event.detail.complete();
     }, 2000);
-  }
-
-  const pullPosts = () => {
-    db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
-      setPosts(snapshot.docs.map((doc) => ({
-        id: doc.id,
-        post: doc.data()
-      })))
-    })
   }
 
   return (
@@ -57,7 +60,7 @@ const Home: React.FC = () => {
 
         <IonRefresher slot="fixed" onIonRefresh={doRefresh} pullFactor={0.5} pullMin={100} pullMax={200}>
           <IonRefresherContent
-            pullingIcon={ barbellOutline }
+            pullingIcon={barbellOutline}
             pullingText="Pull to refresh"
             refreshingSpinner="circles"
             refreshingText="">
@@ -69,6 +72,14 @@ const Home: React.FC = () => {
             <Post key={id} username={post.username} caption={post.caption} imageURL={post.imageURL} />
           ))
         }
+
+        <IonToast
+          isOpen={showNotification}
+          onDidDismiss={() => setShowNotification(false)}
+          message="New posts have arrived!"
+          animated={true}
+          duration={3000}
+        />
 
       </IonContent>
     </IonPage>

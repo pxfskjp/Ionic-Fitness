@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { IonModal, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonItemGroup, IonItem, IonLabel, IonText, IonTextarea, IonImg, IonProgressBar, IonIcon } from '@ionic/react'
 import { db, firebase } from '../../firebase'
 import useFirebaseUpload from "../../hooks/useFirebaseUpload";
+import useFirebaseDatabasePush from "../../hooks/useFirebaseDatabasePush"
 import { imageOutline } from 'ionicons/icons'
 import './NewPostModal.css'
 
@@ -15,15 +16,10 @@ const NewPostModal: React.FC<Props> = (props: Props) => {
     // need username
     const [caption, setCaption] = useState<string>('')
     const [{ dataResponse, isLoading, isError, progress }, setFileData, setDataResponse] = useFirebaseUpload();
+    const [pushPosts] = useFirebaseDatabasePush(caption, dataResponse?.downloadUrl)
 
     const handlePostUpload = () => {
-        console.log(dataResponse?.downloadUrl)
-        db.collection('posts').add({
-            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-            username: 'Temp Name',
-            caption: caption,
-            imageURL: dataResponse?.downloadUrl
-        })
+        pushPosts()
     }
 
     return (
