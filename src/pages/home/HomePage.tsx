@@ -84,9 +84,9 @@ const Home: React.FC = () => {
         <IonToast
           isOpen={showNotification}
           onDidDismiss={() => setShowNotification(false)}
-          message="A new post has arrived!"
+          message="New posts have arrived!"
           animated={true}
-          duration={5000}
+          duration={3000}
         />
 
       </IonContent>
