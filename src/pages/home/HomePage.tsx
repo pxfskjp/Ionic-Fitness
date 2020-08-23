@@ -3,16 +3,14 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonIcon, IonButto
 import { pencilOutline, barbellOutline } from 'ionicons/icons'
 import Post from '../../components/home/Post';
 import NewPostModal from '../../components/home/NewPostModal';
-import useFirebaseDatabase from "../../hooks/useFirebaseDatabase";
+import useFirebaseDatabase from "../../hooks/useFirebaseDatabasePull";
 import { db, firebase } from '../../firebase';
 import './HomePage.css';
 
 
 const Home: React.FC = () => {
   const [showNewPostModal, setShowNewPostModal] = useState<boolean>(false)
-  //const [posts, setPosts] = useState<firebase.firestore.DocumentData[]>()
   const [showNotification, setShowNotification] = useState<boolean>(false)
-
   const [{ posts }, pullPosts] = useFirebaseDatabase()
 
   useEffect(() => {
@@ -35,15 +33,6 @@ const Home: React.FC = () => {
       event.detail.complete();
     }, 2000);
   }
-
-  // const pullPosts = () => {
-  //   db.collection('posts').orderBy('timestamp', 'desc').onSnapshot(snapshot => {
-  //     setPosts(snapshot.docs.map((doc) => ({
-  //       id: doc.id,
-  //       post: doc.data()
-  //     })))
-  //   })
-  // }
 
   return (
     <IonPage>

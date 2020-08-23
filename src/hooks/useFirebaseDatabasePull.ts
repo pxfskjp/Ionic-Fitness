@@ -1,5 +1,5 @@
 import { db, firebase } from '../firebase'
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const FirebaseFileDatabaseApi = (): [
     {
