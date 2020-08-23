@@ -17,7 +17,6 @@ const NewPostModal: React.FC<Props> = (props: Props) => {
     const [{ dataResponse, isLoading, isError, progress }, setFileData, setDataResponse] = useFirebaseUpload();
 
     const handlePostUpload = () => {
-        console.log(dataResponse?.downloadUrl)
         db.collection('posts').add({
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
             username: 'Temp Name',
