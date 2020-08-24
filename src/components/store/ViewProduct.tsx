@@ -32,7 +32,7 @@ const ViewProduct: React.FC<Props> = (props: Props) => {
                         <IonGrid>
                             <IonRow>
                                 <IonCol size="6">
-                                    <IonButton color={props.inCart ? "success" : "primary" } expand="block" fill="solid" onClick={() => { props.setInCart(!props.inCart) }}>{ props.inCart ? "Added to cart" : "Buy"}</IonButton>
+                                    <IonButton color={props.inCart ? "success" : "primary" } expand="block" fill="solid" onClick={() => { props.setInCart(!props.inCart); toggleCart(props.item.name) }}>{ props.inCart ? "Added to cart" : "Buy"}</IonButton>
                                 </IonCol>
                                 <IonCol size="6">
                                     <IonButton color="secondary" expand="block" fill="solid" href="checkout">Checkout</IonButton>
@@ -48,5 +48,16 @@ const ViewProduct: React.FC<Props> = (props: Props) => {
         </IonModal>
     );
 };
+
+function toggleCart(name: string) {
+    let cart = JSON.parse(localStorage.getItem("cart") ||  '[]')
+    if (!cart.includes(name)) {
+        cart.push(name)
+    } else {
+        let i = cart.indexOf(name)
+        cart.splice(i, 1)
+    }
+    localStorage.setItem("cart", JSON.stringify(cart))
+}
 
 export default ViewProduct;
