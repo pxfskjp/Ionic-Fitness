@@ -37,13 +37,16 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import SettingsPage from './pages/settings/SettingsPage';
 import AccountPage from './pages/settings/account/AccountPage';
+import NewPostPage from './pages/home/newpost/NewPostPage';
 
 const App: React.FC = () => (
+  
   <IonApp>
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
           <Route path="/home" component={HomePage} exact={true} />
+          <Route path="/home/newpost" component={NewPostPage} exact={true}/>
           <Route path="/tab2" component={Tab2} exact={true} />
           <Route path="/settings" component={SettingsPage} exact={true} />
           <Route path="/settings/account" component={AccountPage} exact={true} />
