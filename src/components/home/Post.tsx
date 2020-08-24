@@ -15,7 +15,7 @@ const Post: React.FC<Props> = ({ username, caption, imageURL }: Props) => {
     const [showViewPostModal, setShowViewPostModal] = useState<boolean>(false)
 
     return (
-        <IonCard onClick={() => setShowViewPostModal(true)}>
+        <IonCard >
             <IonCardHeader style={{ paddingLeft: "0px", paddingBottom: "0px" }}>
                 <IonItem>
                     <div className="post-header-container">
@@ -28,9 +28,9 @@ const Post: React.FC<Props> = ({ username, caption, imageURL }: Props) => {
                     </div>
                 </IonItem>
             </IonCardHeader>
-            <IonCardContent>
+            <IonCardContent onClick={() => setShowViewPostModal(true)}>
                 <IonCardSubtitle style={{ paddingTop: "10px", paddingBottom: "5px" }}>{caption}</IonCardSubtitle>
-                <IonImg src={imageURL} />
+                <IonImg src={imageURL}  />
             </IonCardContent>
 
             <ViewPostModal 
