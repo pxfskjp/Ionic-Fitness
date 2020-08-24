@@ -6,12 +6,7 @@ import { imageOutline } from 'ionicons/icons'
 import './NewPostPage.css'
 import { useHistory } from 'react-router';
 
-interface Props {
-    showNewPostModal: boolean
-    setShowNewPostModal: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-const NewPostPage: React.FC<Props> = (props: Props) => {
+const NewPostPage: React.FC = () => {
 
     const history = useHistory()
 

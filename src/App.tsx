@@ -40,6 +40,7 @@ import AccountPage from './pages/settings/account/AccountPage';
 import NewPostPage from './pages/home/newpost/NewPostPage';
 
 const App: React.FC = () => (
+  
   <IonApp>
     <IonReactRouter>
       <IonTabs>
