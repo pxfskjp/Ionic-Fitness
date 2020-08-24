@@ -12,7 +12,6 @@ import {
 import { IonReactRouter } from '@ionic/react-router';
 import { ellipse, cart, home, cog, person } from 'ionicons/icons';
 import HomePage from './pages/home/HomePage';
-import NewPostPage from './pages/home/newpost/NewPostPage';
 import Tab2 from './pages/Tab2';
 import Store from './pages/Store';
 import ProductView from './pages/ProductView';
@@ -38,6 +37,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import SettingsPage from './pages/settings/SettingsPage';
 import AccountPage from './pages/settings/account/AccountPage';
+import NewPostPage from './pages/home/newpost/NewPostPage';
 
 const App: React.FC = () => (
   <IonApp>
