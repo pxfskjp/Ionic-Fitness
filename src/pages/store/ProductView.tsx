@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonCard, IonImg, IonCardContent, IonCardSubtitle, IonCardTitle, IonButtons, IonBackButton, IonRippleEffect, IonButton } from '@ionic/react';
-import Item from '../components/Item';
 import './ProductView.css';
 
 const ProductView: React.FC = () => {

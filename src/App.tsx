@@ -13,9 +13,10 @@ import { IonReactRouter } from '@ionic/react-router';
 import { ellipse, cart, home, cog, person } from 'ionicons/icons';
 import HomePage from './pages/home/HomePage';
 import Tab2 from './pages/Tab2';
-import Store from './pages/Store';
-import ProductView from './pages/ProductView';
-import Checkout from './pages/Checkout';
+import Store from './pages/store/Store';
+import ProductView from './pages/store/ProductView';
+import Checkout from './pages/store/Checkout';
+import Billing from './pages/store/Billing';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -51,6 +52,7 @@ const App: React.FC = () => (
           <Route path="/store" component={Store} />
           <Route path="/productview" component={ProductView} />
           <Route path="/checkout" component={Checkout} />
+          <Route path="/billing" component={Billing} />
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="Home" href="/home">

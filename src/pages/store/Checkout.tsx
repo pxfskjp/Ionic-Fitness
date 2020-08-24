@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonBackButton, IonList, IonItem, IonLabel, IonIcon, IonToggle, IonRadio, IonCheckbox, IonImg, IonThumbnail } from '@ionic/react';
-import Item from '../components/Item';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonBackButton, IonList, IonItem, IonLabel, IonIcon, IonImg, IonThumbnail } from '@ionic/react';
 import './Checkout.css';
 import { add, remove } from 'ionicons/icons';
 
 const Checkout: React.FC = () => {
-    const [searchText, setSearchText] = useState('');
-
+    // const [searchText, setSearchText] = useState('');
     return (
         <IonPage>
             <IonHeader>
