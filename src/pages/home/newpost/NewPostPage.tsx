@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
-import { IonModal, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonItemGroup, IonItem, IonLabel, IonText, IonTextarea, IonImg, IonProgressBar, IonIcon } from '@ionic/react'
-import { db, firebase } from '../../firebase'
-import useFirebaseUpload from "../../hooks/useFirebaseUpload";
-import useFirebaseDatabasePush from "../../hooks/useFirebaseDatabasePush"
+import { IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonItemGroup, IonItem, IonLabel, IonText, IonTextarea, IonImg, IonProgressBar, IonIcon, IonPage } from '@ionic/react'
+import useFirebaseUpload from "../../../hooks/useFirebaseUpload";
+import useFirebaseDatabasePush from "../../../hooks/useFirebaseDatabasePush"
 import { imageOutline } from 'ionicons/icons'
-import './NewPostModal.css'
+import './NewPostPage.css'
+import { useHistory } from 'react-router';
 
 interface Props {
     showNewPostModal: boolean
     setShowNewPostModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const NewPostModal: React.FC<Props> = (props: Props) => {
+const NewPostPage: React.FC<Props> = (props: Props) => {
+
+    const history = useHistory()
 
     // need username
     const [caption, setCaption] = useState<string>('')
@@ -23,13 +25,13 @@ const NewPostModal: React.FC<Props> = (props: Props) => {
     }
 
     return (
-        <IonModal isOpen={props.showNewPostModal}>
+        <IonPage>
             <IonHeader translucent>
                 <IonToolbar>
                     <IonTitle size="small">Create New Post</IonTitle>
                     <IonButtons slot="end">
                         <IonButton onClick={() => {
-                            props.setShowNewPostModal(false)
+                            history.push('/home')
                             setDataResponse(null)
                             setCaption('')
                         }}>Close</IonButton>
@@ -59,8 +61,8 @@ const NewPostModal: React.FC<Props> = (props: Props) => {
                 </IonItemGroup>
                 <IonButton onClick={handlePostUpload} style={{ float: 'right', marginRight: '5px' }}>Post</IonButton>
             </IonContent>
-        </IonModal>
+        </IonPage>
     )
 }
 
-export default NewPostModal
+export default NewPostPage

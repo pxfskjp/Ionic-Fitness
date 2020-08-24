@@ -12,6 +12,7 @@ import {
 import { IonReactRouter } from '@ionic/react-router';
 import { ellipse, cart, home, cog, person } from 'ionicons/icons';
 import HomePage from './pages/home/HomePage';
+import NewPostPage from './pages/home/newpost/NewPostPage';
 import Tab2 from './pages/Tab2';
 import Store from './pages/Store';
 import ProductView from './pages/ProductView';
@@ -44,6 +45,7 @@ const App: React.FC = () => (
       <IonTabs>
         <IonRouterOutlet>
           <Route path="/home" component={HomePage} exact={true} />
+          <Route path="/home/newpost" component={NewPostPage} exact={true}/>
           <Route path="/tab2" component={Tab2} exact={true} />
           <Route path="/settings" component={SettingsPage} exact={true} />
           <Route path="/settings/account" component={AccountPage} exact={true} />
