@@ -38,6 +38,7 @@ import './theme/variables.css';
 import SettingsPage from './pages/settings/SettingsPage';
 import AccountPage from './pages/settings/account/AccountPage';
 import NewPostPage from './pages/home/newpost/NewPostPage';
+import ViewPostModal from './pages/home/post/ViewPostPage';
 
 const App: React.FC = () => (
   
@@ -47,6 +48,7 @@ const App: React.FC = () => (
         <IonRouterOutlet>
           <Route path="/home" component={HomePage} exact={true} />
           <Route path="/home/newpost" component={NewPostPage} exact={true}/>
+          <Route path="/home/post" component={ViewPostModal} exact={true}/>
           <Route path="/tab2" component={Tab2} exact={true} />
           <Route path="/settings" component={SettingsPage} exact={true} />
           <Route path="/settings/account" component={AccountPage} exact={true} />
