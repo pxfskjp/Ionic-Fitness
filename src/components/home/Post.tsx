@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
 import { IonCard, IonCardContent, IonCardHeader, IonIcon, IonCardSubtitle, IonItem, IonImg } from '@ionic/react'
 import { personCircleOutline } from 'ionicons/icons';
 import './Post.css'
-import ViewPostModal from './ViewPostModal';
+import { savePost, PostContext } from '../../state/PostState';
+import { useHistory } from 'react-router';
 
 interface Props {
     username: string,
@@ -12,10 +13,11 @@ interface Props {
 
 const Post: React.FC<Props> = ({ username, caption, imageURL }: Props) => {
 
-    const [showViewPostModal, setShowViewPostModal] = useState<boolean>(false)
+    const context = useContext(PostContext)
+    const history = useHistory()
 
     return (
-        <IonCard >
+        <IonCard>
             <IonCardHeader style={{ paddingLeft: "0px", paddingBottom: "0px" }}>
                 <IonItem>
                     <div className="post-header-container">
@@ -28,16 +30,15 @@ const Post: React.FC<Props> = ({ username, caption, imageURL }: Props) => {
                     </div>
                 </IonItem>
             </IonCardHeader>
-            <IonCardContent onClick={() => setShowViewPostModal(true)}>
+            <IonCardContent >
                 <IonCardSubtitle style={{ paddingTop: "10px", paddingBottom: "5px" }}>{caption}</IonCardSubtitle>
-                <IonImg src={imageURL}  />
+                <IonImg src={imageURL} onClick={() => {
+                    context.username = username
+                    context.caption = caption
+                    context.imageURL = imageURL
+                    savePost(context.username, context.caption, context.imageURL).then(() => history.push('/home/post'))
+                }} />
             </IonCardContent>
-
-            <ViewPostModal 
-                post={{username, caption, imageURL}}
-                showViewPostModal={showViewPostModal} 
-                setShowViewNewPostModal={setShowViewPostModal} 
-            />
         </IonCard>
     )
 }

@@ -25,15 +25,16 @@ export const savePost = async (username: string, caption: string, imageURL: stri
     })
 }
 
-let UsernameContext = createContext({} as Post)
+let PostContext = createContext({} as Post)
 
-const UsernameContextProvider = (props: { children: React.ReactNode }) => {
+const PostContextProvider = (props: { children: React.ReactNode }) => {
 
     const [initialUsername, setInitialUsername] = useState('' as string)
     const [initialCaption, setInitialCaption] = useState('' as string)
     const [initialImageURL, setInitialImageURL] = useState('' as string)
 
     useEffect(() => {
+        console.log('hello')
         Promise.resolve(Storage.get({ key: 'username' })).then(
             (result) => {
                 if (typeof result.value === 'string') {
@@ -45,7 +46,7 @@ const UsernameContextProvider = (props: { children: React.ReactNode }) => {
         Promise.resolve(Storage.get({ key: 'caption' })).then(
             (result) => {
                 if (typeof result.value === 'string') {
-                    setInitialUsername(result.value as string)
+                    setInitialCaption(result.value as string)
                 }
             },
             (reason) => console.log("failed: " + reason)
@@ -53,7 +54,8 @@ const UsernameContextProvider = (props: { children: React.ReactNode }) => {
         Promise.resolve(Storage.get({ key: 'imageURL' })).then(
             (result) => {
                 if (typeof result.value === 'string') {
-                    setInitialUsername(result.value as string)
+                    setInitialImageURL(result.value as string)
+                    console.log(initialImageURL)
                 }
             },
             (reason) => console.log("failed: " + reason)
@@ -61,14 +63,14 @@ const UsernameContextProvider = (props: { children: React.ReactNode }) => {
     }, [])
 
     return (
-        <UsernameContext.Provider value={{
+        <PostContext.Provider value={{
             username: initialUsername,
             caption: initialCaption,
             imageURL: initialImageURL
-        }}>{props.children}</UsernameContext.Provider>
+        }}>{props.children}</PostContext.Provider>
     )
 }
 
-let UsernameContextConsumer = UsernameContext.Consumer
+let PostContextConsumer = PostContext.Consumer
 
-export { UsernameContext, UsernameContextProvider, UsernameContextConsumer }
+export { PostContext, PostContextProvider, PostContextConsumer }
