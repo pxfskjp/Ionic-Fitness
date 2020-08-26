@@ -12,7 +12,7 @@ import {
 import { IonReactRouter } from '@ionic/react-router';
 import { ellipse, cart, home, cog, person } from 'ionicons/icons';
 import HomePage from './pages/home/HomePage';
-import Tab2 from './pages/Tab2';
+import Tab2 from './pages/Profile';
 import Store from './pages/Store';
 import ProductView from './pages/ProductView';
 import Checkout from './pages/Checkout';
@@ -38,6 +38,8 @@ import './theme/variables.css';
 import SettingsPage from './pages/settings/SettingsPage';
 import AccountPage from './pages/settings/account/AccountPage';
 import Register from './pages/Register';
+import LoadPage from './pages/LoadPage';
+import Login from './pages/Login';
 
 const App: React.FC = () => (
   <IonApp>
@@ -52,7 +54,9 @@ const App: React.FC = () => (
           <Route path="/store" component={Store} />
           <Route path="/productview" component={ProductView} />
           <Route path="/checkout" component={Checkout} />
-          <Route path="/register" component={Register}/>
+          <Route path="/register" component={Register} exact={true}/>
+          <Route path="/login" component={Login} exact={true}/>
+          <Route path="/loadpage" component={LoadPage} exact={true}/>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="Home" href="/home">
