@@ -1,64 +1,119 @@
-import React, { useState } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonBackButton, IonList, IonItem, IonLabel, IonIcon, IonImg, IonThumbnail } from '@ionic/react';
+import React, { useState, useEffect } from 'react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonList, IonItem, IonLabel, IonIcon, IonToast, IonButton } from '@ionic/react';
 import './Checkout.css';
-import { add, remove } from 'ionicons/icons';
+import { arrowBack } from 'ionicons/icons';
+import { PayPal, PayPalConfiguration, PayPalPayment } from '@ionic-native/paypal';
+import ListProduct from '../../components/store/ListProduct';
 
 const Checkout: React.FC = () => {
-    // const [searchText, setSearchText] = useState('');
+    const [error, setError] = useState(false);
+    const [render, setRender] = useState(false);
+
+    useEffect(() => {
+        setRender(false)
+    })
+
+    let total = 0;
+
+    function pay() {
+        PayPal.init({
+            PayPalEnvironmentProduction: '',
+            PayPalEnvironmentSandbox: 'EE4yfDgtUHDngiABQwZ68uh-RqFGIUXf9XbpvJ14sY74ImouHo6ftXjkG6-_1iwI-pI52grW9ySaX4Hd'
+        }).then(() => {
+            // Environments: PayPalEnvironmentNoNetwork, PayPalEnvironmentSandbox, PayPalEnvironmentProduction
+            PayPal.prepareToRender('PayPalEnvironmentSandbox', new PayPalConfiguration({
+                // Only needed if you get an "Internal Service Error" after PayPal login!
+                // payPalShippingAddressOption: 2 // PayPalShippingAddressOptionPayPal
+            })).then(() => {
+                let payment = new PayPalPayment('3.33', 'NZD', 'Purchase from FitnessApp', 'sale');
+                PayPal.renderSinglePaymentUI(payment).then((res) => {
+                    // Successfully paid
+
+                    // Example sandbox response
+                    //
+                    // {
+                    //   "client": {
+                    //     "environment": "sandbox",
+                    //     "product_name": "PayPal iOS SDK",
+                    //     "paypal_sdk_version": "2.16.0",
+                    //     "platform": "iOS"
+                    //   },
+                    //   "response_type": "payment",
+                    //   "response": {
+                    //     "id": "PAY-1AB23456CD789012EF34GHIJ",
+                    //     "state": "approved",
+                    //     "create_time": "2016-10-03T13:33:33Z",
+                    //     "intent": "sale"
+                    //   }
+                    // }
+                }, () => {
+                    // Error or render dialog closed without being successful
+                });
+            }, () => {
+                // Error in configuration
+            });
+        }, () => {
+            // Error in initialization, maybe PayPal isn't supported or something else
+            setError(true);
+        });
+    }
+
     return (
         <IonPage>
             <IonHeader>
                 <IonToolbar>
                     <IonButtons slot="start">
-                        <IonBackButton defaultHref="store" />
+                        <IonButton routerLink="/store" >
+                            <IonIcon slot="icon-only" icon={arrowBack} />
+                        </IonButton>
                     </IonButtons>
                     <IonTitle>Checkout</IonTitle>
                 </IonToolbar>
             </IonHeader>
-
+            <IonToast isOpen={error} color="danger" onDidDismiss={() => setError(false)} message="PayPal is not supported for web browsers" duration={2000} position="bottom" />
             <IonContent>
                 <IonList lines="full">
-                    <IonItem>
-                        <IonThumbnail slot="start">
-                            <IonImg src="./assets/images/item1.jpg" />
-                        </IonThumbnail>
-                        <IonLabel>MUTANT ZM8+</IonLabel>
-                        <IonLabel>$24.90 × 1</IonLabel>
-                        <IonButtons>
-                            <IonIcon slot="icon-only" icon={add} />
-                            <IonIcon slot="icon-only" icon={remove} />
-                        </IonButtons>
-                    </IonItem>
-                    <IonItem>
-                        <IonThumbnail slot="start">
-                            <IonImg src="./assets/images/item2.jpg" />
-                        </IonThumbnail>
-                        <IonLabel>PHARMAFREAK TEST FREAK 2.0 180CAP</IonLabel>
-                        <IonLabel>$87.90 × 1</IonLabel>
-                        <IonButtons>
-                            <IonIcon slot="icon-only" icon={add} />
-                            <IonIcon slot="icon-only" icon={remove} />
-                        </IonButtons>
-                    </IonItem>
-                    <IonItem>
-                        <IonThumbnail slot="start">
-                            <IonImg src="./assets/images/item3.jpg" />
-                        </IonThumbnail>
-                        <IonLabel>PHARMAFREAK TEST FREAK</IonLabel>
-                        <IonLabel>$68.90 × 2</IonLabel>
-                        <IonButtons>
-                            <IonIcon slot="icon-only" icon={add} />
-                            <IonIcon slot="icon-only" icon={remove} />
-                        </IonButtons>
-                    </IonItem>
+                    {
+                        JSON.parse(localStorage.getItem("cart") || '[]') &&
+                        JSON.parse(localStorage.getItem("cart") || '[]').map((item: any) => {
+                            total += (item.price * getAmount(item.name))
+                            return <ListProduct key={Math.random()} name={item.name} price={item.price} image={item.image} render={render} setRender={setRender} />;
+                        })
+                    }
                     <IonItem>
                         <IonLabel slot="start">Total</IonLabel>
-                        <IonLabel slot="end">$68.90</IonLabel>
+                        <IonLabel slot="end">${Math.round(total * 100) / 100}</IonLabel>
                     </IonItem>
                 </IonList>
+                <IonButton color="primary" expand="block" fill="solid" onClick={pay}>Pay with PayPal</IonButton>
             </IonContent>
         </IonPage>
     );
 };
+
+function getAmount(name: string) {
+    let quantity = JSON.parse(localStorage.getItem("quantity") || '[]')
+    let amount = -1
+    for (let i = 0; i < quantity.length; i++) {
+        if (quantity[i].name === name) {
+            amount = quantity[i].amount
+        }
+    }
+
+    let item;
+
+    if (amount === -1) {
+        amount = 1
+    } else {
+        item = { name: name, amount: amount }
+        let i = quantity.indexOf(item)
+        quantity.splice(i, 1)
+    }
+    item = { name: name, amount: amount }
+    quantity.push(item)
+
+    localStorage.setItem("quantity", JSON.stringify(quantity))
+    return amount
+}
 
 export default Checkout;

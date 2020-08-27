@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { IonCard, IonCardSubtitle, IonCardTitle, IonCardContent, IonImg, IonModal, IonButton, IonToolbar, IonButtons, IonHeader, IonIcon, IonContent, IonText, IonGrid, IonCol, IonRow } from '@ionic/react';
 import './ViewProduct.css';
 import { arrowBack } from 'ionicons/icons';
@@ -8,7 +8,6 @@ interface Props {
     visible: boolean;
     setVisible: React.Dispatch<React.SetStateAction<boolean>>;
     inCart: boolean;
-    setInCart: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ViewProduct: React.FC<Props> = (props: Props) => {
@@ -32,10 +31,10 @@ const ViewProduct: React.FC<Props> = (props: Props) => {
                         <IonGrid>
                             <IonRow>
                                 <IonCol size="6">
-                                    <IonButton color={props.inCart ? "success" : "primary" } expand="block" fill="solid" onClick={() => { props.setInCart(!props.inCart); toggleCart(props.item.name) }}>{ props.inCart ? "Added to cart" : "Buy"}</IonButton>
+                                    <IonButton routerLink="/store" color={getCart(props.item) ? "success" : "primary"} expand="block" fill="solid" onClick={() => { toggleCart(props.item); }}>{getCart(props.item) ? "Added to cart" : "Buy"}</IonButton>
                                 </IonCol>
                                 <IonCol size="6">
-                                    <IonButton color="secondary" expand="block" fill="solid" href="checkout">Checkout</IonButton>
+                                    <IonButton color="secondary" expand="block" fill="solid" onClick={() => { props.setVisible(false) }} routerLink="../checkout">Checkout</IonButton>
                                 </IonCol>
                             </IonRow>
                         </IonGrid>
@@ -49,14 +48,32 @@ const ViewProduct: React.FC<Props> = (props: Props) => {
     );
 };
 
-function toggleCart(name: string) {
-    let cart = JSON.parse(localStorage.getItem("cart") ||  '[]')
-    if (!cart.includes(name)) {
-        cart.push(name)
+function getCart(product: any) {
+    let cart = JSON.parse(localStorage.getItem("cart") || '[]')
+    for (let i = 0; i < cart.length; i++) {
+        if (cart[i].name === product.name) {
+            return true
+        }
+    }
+    return false
+}
+
+function toggleCart(product: any) {
+    let cart = JSON.parse(localStorage.getItem("cart") || '[]')
+    let inCart = false
+    for (let i = 0; i < cart.length; i++) {
+        if (cart[i].name === product.name) {
+            inCart = true
+        }
+    }
+
+    if (!inCart) {
+        cart.push(product)
     } else {
-        let i = cart.indexOf(name)
+        let i = cart.indexOf(product)
         cart.splice(i, 1)
     }
+
     localStorage.setItem("cart", JSON.stringify(cart))
 }
 

@@ -14,7 +14,6 @@ import { ellipse, cart, home, cog, person } from 'ionicons/icons';
 import HomePage from './pages/home/HomePage';
 import Tab2 from './pages/Tab2';
 import Store from './pages/store/Store';
-import ProductView from './pages/store/ProductView';
 import Checkout from './pages/store/Checkout';
 import Billing from './pages/store/Billing';
 
@@ -39,6 +38,9 @@ import './theme/variables.css';
 import SettingsPage from './pages/settings/SettingsPage';
 import AccountPage from './pages/settings/account/AccountPage';
 
+localStorage.removeItem("cart");
+localStorage.removeItem("quantity");
+
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
@@ -50,7 +52,6 @@ const App: React.FC = () => (
           <Route path="/settings/account" component={AccountPage} exact={true} />
           <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
           <Route path="/store" component={Store} />
-          <Route path="/productview" component={ProductView} />
           <Route path="/checkout" component={Checkout} />
           <Route path="/billing" component={Billing} />
         </IonRouterOutlet>

@@ -36,7 +36,7 @@ const Store: React.FC = () => {
           <IonTitle>Store</IonTitle>
           <IonProgressBar type="indeterminate" hidden={loaded}></IonProgressBar>
           <IonButtons slot="end">
-            <IonButton>
+            <IonButton routerLink="/checkout">
               <IonText>Checkout</IonText>
               <IonIcon slot="end" icon={cart} />
             </IonButton>
@@ -44,14 +44,13 @@ const Store: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-
-        {/* <IonToolbar>
+        <IonToolbar>
           <IonSearchbar value={search} onIonChange={e => setSearch(e.detail.value!)} placeholder="Product search"></IonSearchbar>
-        </IonToolbar> */}
+        </IonToolbar>
         <IonGrid>
           <IonRow>
             {products &&
-              products.map(({ id, product }) => {
+              products.filter((i) => i.product.name.toLowerCase().startsWith(search.toLowerCase())).map(({ id, product }) => {
                 return <Product key={id} name={product.name} price={product.price} description={product.description} image={product.image} active={loaded} />;
               })
             }

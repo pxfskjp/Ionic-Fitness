@@ -14,7 +14,6 @@ interface Props {
 
 const Product: React.FC<Props> = ({ name, price, description, image, active }) => {
     const [visible, setVisible] = useState(false)
-    const [inCart, setInCart] = useState(false)
 
     return (
         <IonCol size={getSize()}>
@@ -25,8 +24,8 @@ const Product: React.FC<Props> = ({ name, price, description, image, active }) =
                     <IonCardTitle>{name}</IonCardTitle>
                 </IonCardContent>
                 </IonCard>
-            <IonIcon id="badge" icon={checkmarkCircle} hidden={!inCart}/>
-            <ViewProduct item={{ name, price, description, image }} visible={visible} setVisible={setVisible} inCart={inCart} setInCart={setInCart} />
+            <IonIcon id="badge" icon={checkmarkCircle} hidden={!getCart({ name, price, description, image })}/>
+            <ViewProduct item={{ name, price, description, image }} visible={visible} setVisible={setVisible} inCart={getCart({ name, price, description, image })} />
         </IonCol>
     );
 };
@@ -35,6 +34,16 @@ function getSize() {
     let minWidth = 180
     let size = window.innerWidth / minWidth
     return (12 / Math.floor(size)).toString()
+}
+
+function getCart(product: any) {
+    let cart = JSON.parse(localStorage.getItem("cart") || '[]')
+    for (let i = 0; i < cart.length; i++) {
+        if (cart[i].name === product.name) {
+            return true
+        }
+    }
+    return false
 }
 
 export default Product;
