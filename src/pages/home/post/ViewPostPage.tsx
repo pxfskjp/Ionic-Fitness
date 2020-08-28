@@ -5,7 +5,7 @@ import { useHistory } from 'react-router'
 
 const ViewPostModal: React.FC = () => {
 
-    const {username, caption, imageURL} = useContext(PostContext)
+    const context = useContext(PostContext)
     const history = useHistory()
 
     return (
@@ -15,21 +15,22 @@ const ViewPostModal: React.FC = () => {
                     <IonButtons slot="start">
                         <IonButton onClick={() => {
                             history.push('/home')
+                            context.imageURL = ''
                         }}>Close</IonButton>
                     </IonButtons>
                 </IonToolbar>
             </IonHeader>
             <IonContent>
                 <IonItem>
-                    <IonImg src={imageURL} />
+                    <IonImg src={context.imageURL} />
                 </IonItem>
                 <IonItem>
                     <div>
                         <div style={{}}>
-                            <IonText color='primary' style={{ fontWeight: 'bold' }}><p>{username}</p></IonText>
+                            <IonText color='primary' style={{ fontWeight: 'bold' }}><p>{context.username}</p></IonText>
                         </div>
                         <div style={{}}>
-                            <IonText><p>{caption}</p></IonText>
+                            <IonText><p>{context.caption}</p></IonText>
                         </div>
                     </div>
                 </IonItem>
