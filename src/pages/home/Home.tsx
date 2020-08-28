@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonIcon, IonButton, IonRefresher, IonRefresherContent, IonToast } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonIcon, IonButton, IonRefresher, IonRefresherContent, IonToast, IonText, IonButtons } from '@ionic/react';
 import { pencilOutline, barbellOutline } from 'ionicons/icons'
 import Post from '../../components/home/Post';
 import useFirebaseDatabase from "../../hooks/useFirebaseDatabasePull";
@@ -40,9 +40,12 @@ const Home: React.FC = () => {
               <IonTitle>FitnessApp</IonTitle>
             </div>
             <div className="homepage-header-button">
-              <IonButton slot="icon-only" routerLink="/home/newpost" color="light">
-                <IonIcon size='default' icon={pencilOutline} />
-              </IonButton>
+              <IonButtons slot="end">
+                <IonButton routerLink="/home/newpost">
+                  <IonText>New Post</IonText>
+                  <IonIcon slot="end" icon={pencilOutline} />
+                </IonButton>
+              </IonButtons>
             </div>
           </div>
         </IonToolbar>
