@@ -16,17 +16,18 @@ const ListProduct: React.FC<Props> = (props: Props) => {
     const [showActionSheet, setShowActionSheet] = useState(false)
 
     function changeAmount(name: string, change: number) {
-        let amount = getAmount(name)
-        let quantity = JSON.parse(localStorage.getItem("quantity") || '[]')
-        let item = { name: name, amount: amount }
-        let i = quantity.indexOf(item)
-        quantity.splice(i, 1)
-        amount += change
-        if (amount === 0) {
+        let a = amount + change
+        if (a === 0) {
+            setAmount(1)
             setShowActionSheet(true)
         } else {
-            item = { name: name, amount: amount }
-            setAmount(amount)
+            let quantity = JSON.parse(localStorage.getItem("quantity") || '[]')
+            for (let i = 0; i < quantity.length; i++) {
+                if (quantity[i].name === name && quantity[i].amount === amount)
+                quantity.splice(i, 1)
+            }
+            setAmount(a)
+            let item = { name: name, amount: a }
             quantity.push(item)
             localStorage.setItem("quantity", JSON.stringify(quantity))
             props.setRender(true)
@@ -35,10 +36,10 @@ const ListProduct: React.FC<Props> = (props: Props) => {
 
     function removeCart(name: string) {
         let cart = JSON.parse(localStorage.getItem("cart") || '[]')
-    
+
         let i = cart.find((item: any) => item.name === name)
         cart.splice(i, 1)
-    
+
         localStorage.setItem("cart", JSON.stringify(cart))
         props.setRender(true)
     }
@@ -83,23 +84,18 @@ function getAmount(name: string) {
     for (let i = 0; i < quantity.length; i++) {
         if (quantity[i].name === name) {
             amount = quantity[i].amount
+            break
         }
     }
 
-    let item;
-
     if (amount === -1) {
         amount = 1
-    } else {
-        item = { name: name, amount: amount }
-        let i = quantity.indexOf(item)
-        quantity.splice(i, 1)
+        let item = { name: name, amount: amount }
+        quantity.push(item)
+        localStorage.setItem("quantity", JSON.stringify(quantity))
     }
-    item = { name: name, amount: amount }
-    quantity.push(item)
-
-    localStorage.setItem("quantity", JSON.stringify(quantity))
     return amount
 }
 
 export default ListProduct;
+export { getAmount };

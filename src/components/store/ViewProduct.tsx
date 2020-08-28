@@ -78,3 +78,4 @@ function toggleCart(product: any) {
 }
 
 export default ViewProduct;
+export { getCart };

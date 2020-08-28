@@ -3,7 +3,7 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonLi
 import './Checkout.css';
 import { arrowBack } from 'ionicons/icons';
 import { PayPal, PayPalConfiguration, PayPalPayment } from '@ionic-native/paypal';
-import ListProduct from '../../components/store/ListProduct';
+import ListProduct, { getAmount } from '../../components/store/ListProduct';
 
 const Checkout: React.FC = () => {
     const [error, setError] = useState(false);
@@ -15,7 +15,7 @@ const Checkout: React.FC = () => {
 
     let total = 0;
 
-    function pay() {
+    function pay(total: number) {
         PayPal.init({
             PayPalEnvironmentProduction: '',
             PayPalEnvironmentSandbox: 'EE4yfDgtUHDngiABQwZ68uh-RqFGIUXf9XbpvJ14sY74ImouHo6ftXjkG6-_1iwI-pI52grW9ySaX4Hd'
@@ -25,7 +25,7 @@ const Checkout: React.FC = () => {
                 // Only needed if you get an "Internal Service Error" after PayPal login!
                 // payPalShippingAddressOption: 2 // PayPalShippingAddressOptionPayPal
             })).then(() => {
-                let payment = new PayPalPayment('3.33', 'NZD', 'Purchase from FitnessApp', 'sale');
+                let payment = new PayPalPayment(total.toString(), 'NZD', 'Purchase from FitnessApp', 'sale');
                 PayPal.renderSinglePaymentUI(payment).then((res) => {
                     // Successfully paid
 
@@ -85,35 +85,10 @@ const Checkout: React.FC = () => {
                         <IonLabel slot="end">${Math.round(total * 100) / 100}</IonLabel>
                     </IonItem>
                 </IonList>
-                <IonButton color="primary" expand="block" fill="solid" onClick={pay}>Pay with PayPal</IonButton>
+                <IonButton color="primary" expand="block" fill="solid" onClick={() => pay(total)}>Pay with PayPal</IonButton>
             </IonContent>
         </IonPage>
     );
 };
-
-function getAmount(name: string) {
-    let quantity = JSON.parse(localStorage.getItem("quantity") || '[]')
-    let amount = -1
-    for (let i = 0; i < quantity.length; i++) {
-        if (quantity[i].name === name) {
-            amount = quantity[i].amount
-        }
-    }
-
-    let item;
-
-    if (amount === -1) {
-        amount = 1
-    } else {
-        item = { name: name, amount: amount }
-        let i = quantity.indexOf(item)
-        quantity.splice(i, 1)
-    }
-    item = { name: name, amount: amount }
-    quantity.push(item)
-
-    localStorage.setItem("quantity", JSON.stringify(quantity))
-    return amount
-}
 
 export default Checkout;

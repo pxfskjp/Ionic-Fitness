@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { IonCol, IonCard, IonCardSubtitle, IonCardTitle, IonCardContent, IonImg, IonIcon } from '@ionic/react';
 import { checkmarkCircle } from 'ionicons/icons';
 import './Product.css';
-import ViewProduct from './ViewProduct';
+import ViewProduct, { getCart } from './ViewProduct';
 
 interface Props {
     name: string;
@@ -34,16 +34,6 @@ function getSize() {
     let minWidth = 180
     let size = window.innerWidth / minWidth
     return (12 / Math.floor(size)).toString()
-}
-
-function getCart(product: any) {
-    let cart = JSON.parse(localStorage.getItem("cart") || '[]')
-    for (let i = 0; i < cart.length; i++) {
-        if (cart[i].name === product.name) {
-            return true
-        }
-    }
-    return false
 }
 
 export default Product;
