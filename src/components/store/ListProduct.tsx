@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IonItem, IonThumbnail, IonLabel, IonButtons, IonImg, IonIcon, IonButton, IonActionSheet } from '@ionic/react';
+import { IonItem, IonThumbnail, IonLabel, IonButtons, IonImg, IonIcon, IonButton, IonActionSheet, IonItemSliding, IonItemOptions, IonItemOption } from '@ionic/react';
 import { add, remove } from 'ionicons/icons';
 import './ListProduct.css';
 
@@ -18,13 +18,12 @@ const ListProduct: React.FC<Props> = (props: Props) => {
     function changeAmount(name: string, change: number) {
         let a = amount + change
         if (a === 0) {
-            setAmount(1)
             setShowActionSheet(true)
         } else {
             let quantity = JSON.parse(localStorage.getItem("quantity") || '[]')
             for (let i = 0; i < quantity.length; i++) {
                 if (quantity[i].name === name && quantity[i].amount === amount)
-                quantity.splice(i, 1)
+                    quantity.splice(i, 1)
             }
             setAmount(a)
             let item = { name: name, amount: a }
@@ -45,36 +44,43 @@ const ListProduct: React.FC<Props> = (props: Props) => {
     }
 
     return (
-        <IonItem>
-            <IonActionSheet
-                header={`Remove '${props.name}' from cart?`}
-                isOpen={showActionSheet}
-                onDidDismiss={() => { setShowActionSheet(false) }}
-                buttons={[{
-                    text: 'Confirm',
-                    handler: () => {
-                        removeCart(props.name)
-                    }
-                }, {
-                    text: 'Cancel',
-                    role: 'cancel'
-                }]}
-            >
-            </IonActionSheet>
-            <IonThumbnail slot="start">
-                <IonImg src={props.image} />
-            </IonThumbnail>
-            <IonLabel>{props.name}</IonLabel>
-            <IonLabel>${props.price} × {amount}</IonLabel>
-            <IonButtons>
-                <IonButton disabled={amount >= 10} onClick={() => changeAmount(props.name, 1)} >
-                    <IonIcon slot="icon-only" icon={add} />
-                </IonButton>
-                <IonButton disabled={amount <= 0} onClick={() => changeAmount(props.name, -1)} >
-                    <IonIcon slot="icon-only" icon={remove} />
-                </IonButton>
-            </IonButtons>
-        </IonItem>
+        <IonItemSliding >
+            <IonItemOptions side="end">
+                <IonItemOption color="danger" expandable onClick={() => changeAmount(props.name, -getAmount(props.name))}>
+                    Delete
+                </IonItemOption>
+            </IonItemOptions>
+            <IonItem>
+                <IonActionSheet
+                    header={`Remove '${props.name}' from cart?`}
+                    isOpen={showActionSheet}
+                    onDidDismiss={() => { setShowActionSheet(false) }}
+                    buttons={[{
+                        text: 'Confirm',
+                        handler: () => {
+                            removeCart(props.name)
+                        }
+                    }, {
+                        text: 'Cancel',
+                        role: 'cancel'
+                    }]}
+                >
+                </IonActionSheet>
+                <IonThumbnail slot="start">
+                    <IonImg src={props.image} />
+                </IonThumbnail>
+                <IonLabel>{props.name}</IonLabel>
+                <IonLabel>${props.price} × {amount}</IonLabel>
+                <IonButtons>
+                    <IonButton disabled={amount >= 10} onClick={() => changeAmount(props.name, 1)} >
+                        <IonIcon slot="icon-only" icon={add} />
+                    </IonButton>
+                    <IonButton disabled={amount <= 0} onClick={() => changeAmount(props.name, -1)} >
+                        <IonIcon slot="icon-only" icon={remove} />
+                    </IonButton>
+                </IonButtons>
+            </IonItem>
+        </IonItemSliding>
     );
 };
 

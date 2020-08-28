@@ -3,6 +3,7 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonLi
 import { arrowBack } from 'ionicons/icons';
 import { PayPal, PayPalConfiguration, PayPalPayment } from '@ionic-native/paypal';
 import ListProduct, { getAmount } from '../../components/store/ListProduct';
+import GenericContainer from '../../components/GenericContainer';
 
 const Checkout: React.FC = () => {
     const [error, setError] = useState(false);
@@ -11,8 +12,6 @@ const Checkout: React.FC = () => {
     useEffect(() => {
         setRender(false)
     })
-
-    let total = 0;
 
     function pay(total: number) {
         PayPal.init({
@@ -71,23 +70,39 @@ const Checkout: React.FC = () => {
             </IonHeader>
             <IonToast isOpen={error} color="danger" onDidDismiss={() => setError(false)} message="PayPal is not supported for web browsers" duration={2000} position="bottom" />
             <IonContent>
-                <IonList lines="full">
-                    {
-                        JSON.parse(localStorage.getItem("cart") || '[]') &&
-                        JSON.parse(localStorage.getItem("cart") || '[]').map((item: any) => {
-                            total += (item.price * getAmount(item.name))
-                            return <ListProduct key={Math.random()} name={item.name} price={item.price} image={item.image} render={render} setRender={setRender} />;
-                        })
-                    }
-                    <IonItem>
-                        <IonLabel slot="start">Total</IonLabel>
-                        <IonLabel slot="end">${Math.round(total * 100) / 100}</IonLabel>
-                    </IonItem>
-                </IonList>
-                <IonButton color="primary" expand="block" fill="solid" onClick={() => pay(total)}>Pay with PayPal</IonButton>
+                {displayCart(render, setRender, pay)}
             </IonContent>
         </IonPage>
     );
 };
+
+function displayCart(render: any, setRender: any, pay: any) {
+    let total = 0;
+
+    if (JSON.parse(localStorage.getItem("cart") || '[]').length > 0) {
+        return (
+            <div>
+            <IonList lines="full">
+                {
+                    JSON.parse(localStorage.getItem("cart") || '[]') &&
+                    JSON.parse(localStorage.getItem("cart") || '[]').map((item: any) => {
+                        total += (item.price * getAmount(item.name))
+                        return <ListProduct key={Math.random()} name={item.name} price={item.price} image={item.image} render={render} setRender={setRender} />;
+                    })
+                }
+                <IonItem>
+                    <IonLabel slot="start">Total</IonLabel>
+                    <IonLabel slot="end">${Math.round(total * 100) / 100}</IonLabel>
+                </IonItem>
+            </IonList>
+            <IonButton color="primary" expand="block" fill="solid" onClick={() => pay(total)}>Pay with PayPal</IonButton>
+            </div>
+        );
+    } else {
+        let name = <strong>Whoops, your cart is empty!</strong>
+        let information = <p>Add a product from the store to get started</p>
+        return <GenericContainer name={name} information={information} />
+    }
+}
 
 export default Checkout;
