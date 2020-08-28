@@ -40,6 +40,7 @@ import AccountPage from './pages/settings/account/AccountPage';
 import Register from './pages/Register';
 import LoadPage from './pages/LoadPage';
 import Login from './pages/Login';
+import EditProfile from './pages/EditProfile';
 
 const App: React.FC = () => (
   <IonApp>
@@ -47,7 +48,7 @@ const App: React.FC = () => (
       <IonTabs>
         <IonRouterOutlet>
           <Route path="/home" component={HomePage} exact={true} />
-          <Route path="/tab2" component={Tab2} exact={true} />
+          <Route path="/profile" component={Tab2} exact={true} />
           <Route path="/settings" component={SettingsPage} exact={true} />
           <Route path="/settings/account" component={AccountPage} exact={true} />
           <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
@@ -57,12 +58,13 @@ const App: React.FC = () => (
           <Route path="/register" component={Register} exact={true}/>
           <Route path="/login" component={Login} exact={true}/>
           <Route path="/loadpage" component={LoadPage} exact={true}/>
+          <Route path="/editprofile" component={EditProfile} exact={true}/>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="Home" href="/home">
             <IonIcon icon={home} />
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
+          <IonTabButton tab="tab2" href="/profile">
             <IonIcon icon={person} />
             <IonLabel>Profile</IonLabel>
           </IonTabButton>

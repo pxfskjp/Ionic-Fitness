@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { IonPage, IonHeader, IonToolbar, IonGrid, IonRow, IonCol, IonTitle, IonButton, IonContent, IonList, IonItem, IonLabel, IonText, IonInput, IonIcon, IonAlert } from '@ionic/react';
+import { IonPage, IonHeader, IonToolbar, IonGrid, IonRow, IonCol, IonTitle, IonButton, IonContent, IonList, IonItem, IonLabel, IonText, IonInput, IonIcon, IonAlert, IonBackButton, IonButtons } from '@ionic/react';
 import { logoFacebook, logoInstagram, logoGoogle } from 'ionicons/icons';
 import { db, firebase} from '../firebase'
 import { auth } from 'firebase';
+import { isNull } from 'util';
 
 const Register: React.FC = () => {
 
@@ -18,6 +19,7 @@ const Register: React.FC = () => {
   const [showAlert1, setShowAlert1] = useState(false);
 
     async function registerNewUser() {
+      console.log("heelo")
       try {
         const userAuth = await firebase.auth().createUserWithEmailAndPassword(email, password);
         db.collection('users').doc(userAuth.user?.uid).set({
@@ -28,7 +30,8 @@ const Register: React.FC = () => {
           birthday: birthday,
           facebook: facebook,
           instagram: instagram,
-          google: google
+          google: google,
+          image: './assets/images/defaultProfilePic.png'
         })
       } catch (error){
         console.log(error.message)
@@ -52,7 +55,10 @@ function getUserData(uid: string) {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonCol><IonTitle>Register</IonTitle></IonCol>         
+          <IonButtons slot="start">
+            <IonBackButton defaultHref="loadpage" />
+          </IonButtons>
+          <IonTitle>Register</IonTitle>         
         </IonToolbar>
       </IonHeader>
 
@@ -97,7 +103,7 @@ function getUserData(uid: string) {
 
         </IonList>
         {/* <IonButton onClick = {registerNewUser} expand = "block" color = "success">Create Account</IonButton> */}
-        <IonButton onClick = {() => registerNewUser} expand = "block" color = "success">Create Account</IonButton>
+        <IonButton onClick = {registerNewUser} expand = "block" color = "success">Create Account</IonButton>
       </IonContent>
     </IonPage>
 );

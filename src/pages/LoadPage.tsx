@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { IonPage, IonHeader, IonToolbar, IonGrid, IonRow, IonCol, IonTitle, IonButton, IonContent, IonImg, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent } from '@ionic/react';
+import "./LoadPage.css"
 
 const LoadPage: React.FC = () => {
 
@@ -18,8 +19,8 @@ const LoadPage: React.FC = () => {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent>
-        <IonImg src={"./assets/images/Logoedited (1).png"}></IonImg>
+      <IonContent class = 'homepage-bg'>
+        <IonImg src={"./assets/images/Logoedited (1).png"} className = "logo"></IonImg>
 
         <IonGrid>
           <IonRow>
