@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonLabel, IonItem, IonList, IonText, IonGrid, IonRow, IonCol, IonIcon, IonImg } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonButtons, IonLabel, IonItem, IonList, IonText, IonIcon, IonImg } from '@ionic/react';
 import { logoFacebook, logoInstagram, logoGoogle } from 'ionicons/icons';
 import { db, firebase } from '../../firebase'
 import './Register'
@@ -39,12 +39,10 @@ const Tab2: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonGrid>
-            <IonRow>
-              <IonCol><IonTitle>Profile</IonTitle></IonCol>
-              <IonCol><IonButton size="small" expand="block" href="editprofile" color="dark">Edit</IonButton></IonCol>
-            </IonRow>
-          </IonGrid>
+          <IonTitle>Profile</IonTitle>
+          <IonButtons slot="end">
+            <IonButton size="small" expand="block" href="editprofile" color="dark">Edit</IonButton>
+          </IonButtons>
         </IonToolbar>
       </IonHeader>
       <IonContent>
