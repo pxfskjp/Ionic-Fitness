@@ -42,7 +42,7 @@ const Home: React.FC = () => {
               <IonTitle>FitnessApp</IonTitle>
             </div>
             <div className="homepage-header-button">
-              <IonButton routerLink="/home/newpost" color="light">
+              <IonButton slot="icon-only" routerLink="/home/newpost" color="light">
                 <IonIcon size='default' icon={pencilOutline} />
               </IonButton>
             </div>
