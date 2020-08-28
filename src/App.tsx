@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
@@ -39,16 +39,30 @@ import SettingsPage from './pages/settings/SettingsPage';
 import AccountPage from './pages/settings/account/AccountPage';
 import NewPostPage from './pages/home/newpost/NewPostPage';
 import ViewPostModal from './pages/home/post/ViewPostPage';
-
-localStorage.removeItem("cart");
-localStorage.removeItem("quantity");
 import Register from './pages/Register';
 import LoadPage from './pages/LoadPage';
 import Login from './pages/Login';
 import EditProfile from './pages/EditProfile';
+import firebase from 'firebase';
 
-const App: React.FC = () => (
+localStorage.removeItem("cart");
+localStorage.removeItem("quantity");
+
+
+const App: React.FC = () => {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      
+      setIsLoggedIn(true)
+      console.log("user signed in")
+    }
+  });
+
+  return (
+
   <IonApp>
     <IonReactRouter>
       <IonTabs>
@@ -60,6 +74,7 @@ const App: React.FC = () => (
           <Route path="/settings" component={SettingsPage} exact={true} />
           <Route path="/settings/account" component={AccountPage} exact={true} />
           <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
+          <Redirect exact from ="/" to={isLoggedIn ? "/home" : "/loadpage"}/>
           <Route path="/store" component={Store} />
           <Route path="/checkout" component={Checkout} />
           <Route path="/billing" component={Billing} />
@@ -88,6 +103,6 @@ const App: React.FC = () => (
     </IonReactRouter>
   </IonApp>
 );
+}
 
 export default App;
-
