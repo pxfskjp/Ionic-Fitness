@@ -1,0 +1,12 @@
+.homepage-bg {
+    /* display: block; */
+    --background: url('../gymjunkie.jpeg') no-repeat center center / cover;
+}
+.logo {
+    height: 75px;
+     width: 75px; 
+     margin-left: auto; 
+     margin-right: auto; 
+     margin-top: 75px; 
+     margin-bottom: 100px;
+}
