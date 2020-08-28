@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonToggle, IonAlert, IonIcon } from '@ionic/react';
 import { moon } from 'ionicons/icons'
 import './SettingsPage.css';
+import firebase from 'firebase';
+import { useHistory } from 'react-router';
 
 const SettingsPage: React.FC = () => {
   const [showLogout, setShowlogout] = useState<boolean>(false)
   const [checked, setChecked] = useState<boolean>(false)
 
+  const history = useHistory()
+  
   const toggleTheme = () => {
     document.body.classList.toggle("dark")
     setChecked(!checked)
@@ -42,8 +46,16 @@ const SettingsPage: React.FC = () => {
           buttons={[
             {
               text: 'Yes',
-              handler: () => { }
-            },
+              handler: () => { 
+                firebase.auth().signOut().then(function() {
+                  // Sign-out successful.
+                  console.log("user signed out")
+                }).catch(function(error) {
+                  // An error happened.
+              });
+              history.push('/loadpage');
+            }
+          },
             {
               text: 'No',
               handler: () => { }

@@ -44,15 +44,6 @@ const Tab2: React.FC = () => {
         console.log("No user is signed in.")
       }
     });
-    
-    function signout (){
-      firebase.auth().signOut().then(function() {
-        // Sign-out successful.
-        console.log("user signed out")
-      }).catch(function(error) {
-        // An error happened.
-      });
-    }
 
   return (
     <IonPage>
@@ -61,7 +52,6 @@ const Tab2: React.FC = () => {
           <IonGrid>
             <IonRow>
               <IonCol><IonTitle>Profile</IonTitle></IonCol>
-              <IonCol><IonButton size = "small" expand = "block" href="loadpage" color = "dark">Home</IonButton></IonCol>
               <IonCol><IonButton size = "small" expand = "block" href="editprofile" color = "dark">Edit</IonButton></IonCol>
               
               
@@ -71,27 +61,10 @@ const Tab2: React.FC = () => {
       </IonHeader>
 
       <IonContent>
-        {/* <IonFab vertical="top" horizontal="end" slot="fixed">
-          <label htmlFor="file-upload">
-            <IonFabButton color = "dark">
-              <IonIcon icon = {imageOutline}/>
-            </IonFabButton>
-          </label>
-          <input id="file-upload" type="file" onChange={(e: any) => setFileData(e.target.files[0])}/>
-        </IonFab> */}
-        
         <IonImg src={profilepic}/>
 
         <IonList lines="full" class="ion-no-margin ion-no-padding">
-        
-          {/* <IonGrid>
-            <IonRow>
-              <IonCol>Posts<IonBadge color = "danger">1.7k</IonBadge></IonCol>
-              <IonCol>Followers<IonBadge color = "danger">1.5m</IonBadge></IonCol>
-              <IonCol>Following<IonBadge color = "danger">999</IonBadge></IonCol>
-            </IonRow>
-          </IonGrid> */}
-       
+
           <IonItem>
             <IonLabel position="stacked">First Name <IonText color="danger"></IonText></IonLabel>
             <IonLabel>{firstName}</IonLabel>
@@ -117,7 +90,6 @@ const Tab2: React.FC = () => {
           <IonItem><IonIcon icon = {logoInstagram}></IonIcon><IonLabel>{instagram}</IonLabel></IonItem>
           <IonItem><IonIcon icon = {logoGoogle}></IonIcon><IonLabel>{google}</IonLabel></IonItem>
         </IonList>
-        <IonButton expand = "block" onClick = {signout}>Sign Out</IonButton>
       </IonContent>
     </IonPage>
   );

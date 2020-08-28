@@ -4,6 +4,7 @@ import { logoFacebook, logoInstagram, logoGoogle } from 'ionicons/icons';
 import { db, firebase} from '../firebase'
 import { auth } from 'firebase';
 import { isNull } from 'util';
+import { useHistory } from 'react-router';
 
 const Register: React.FC = () => {
 
@@ -18,8 +19,9 @@ const Register: React.FC = () => {
   
   const [showAlert1, setShowAlert1] = useState(false);
 
+  const history = useHistory()
+
     async function registerNewUser() {
-      console.log("heelo")
       try {
         const userAuth = await firebase.auth().createUserWithEmailAndPassword(email, password);
         db.collection('users').doc(userAuth.user?.uid).set({
@@ -36,6 +38,7 @@ const Register: React.FC = () => {
       } catch (error){
         console.log(error.message)
       }
+      history.push('/home');
   }
 
   firebase.auth().onAuthStateChanged(user => {
