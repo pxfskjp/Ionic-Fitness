@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItemDivider, IonItem, IonInput, IonCard, IonLabel, IonText } from '@ionic/react';
-import './Billing.css';
+import React from 'react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonInput, IonCard, IonLabel, IonText } from '@ionic/react';
 
 const Billing: React.FC = () => {
-    const [text, setText] = useState('');
+    let text;
 
     return (
         <IonPage>

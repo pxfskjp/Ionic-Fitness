@@ -1,13 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { IonPage, IonHeader, IonToolbar, IonGrid, IonRow, IonCol, IonTitle, IonButton, IonContent, IonImg, IonCard, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCardContent } from '@ionic/react';
-import "./LoadPage.css"
+import "./Main.css"
 
-const LoadPage: React.FC = () => {
-
-
-  const [] = useState<string>('')
-  const [] = useState<string>('')
-
+const Main: React.FC = () => {
   return(
     <IonPage>
       <IonHeader>
@@ -54,14 +49,11 @@ const LoadPage: React.FC = () => {
                 <IonButton expand = "block" color = "dark" href = "login">Login</IonButton>
               </IonCardContent>
             </IonCard>
-
-
           </IonRow>
         </IonGrid>
-
       </IonContent>
     </IonPage>
 )
 }
 
-export default LoadPage;
+export default Main;

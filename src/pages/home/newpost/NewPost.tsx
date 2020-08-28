@@ -3,10 +3,10 @@ import { IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, Ion
 import useFirebaseUpload from "../../../hooks/useFirebaseUpload";
 import useFirebaseDatabasePush from "../../../hooks/useFirebaseDatabasePush"
 import { imageOutline } from 'ionicons/icons'
-import './NewPostPage.css'
+import './NewPost.css'
 import { useHistory } from 'react-router';
 
-const NewPostPage: React.FC = () => {
+const NewPost: React.FC = () => {
 
     const history = useHistory()
 
@@ -60,4 +60,4 @@ const NewPostPage: React.FC = () => {
     )
 }
 
-export default NewPostPage
+export default NewPost

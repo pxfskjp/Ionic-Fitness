@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { IonHeader, IonToolbar, IonButtons, IonButton, IonContent, IonImg, IonItem, IonText, IonPage } from '@ionic/react'
 import { PostContext } from '../../../state/PostState'
 import { useHistory } from 'react-router'

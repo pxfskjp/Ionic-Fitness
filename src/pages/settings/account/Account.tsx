@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonLabel } from '@ionic/react';
 import Header from '../../../components/settings/account/Header';
 import ChangePasswordModal from '../../../components/settings/account/ChangePasswordModal';
-import './AccountPage.css';
 
-const AccountPage: React.FC = () => {
+const Account: React.FC = () => {
   const [showPasswordModal, setShowPasswordModal] = useState(false)
 
   return (
@@ -30,4 +29,4 @@ const AccountPage: React.FC = () => {
   );
 };
 
-export default AccountPage;
+export default Account;

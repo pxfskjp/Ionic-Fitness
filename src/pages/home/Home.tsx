@@ -4,9 +4,7 @@ import { pencilOutline, barbellOutline } from 'ionicons/icons'
 import Post from '../../components/home/Post';
 import useFirebaseDatabase from "../../hooks/useFirebaseDatabasePull";
 import { db } from '../../firebase';
-import './HomePage.css';
-import { PostContextProvider } from '../../state/PostState';
-
+import './Home.css';
 
 const Home: React.FC = () => {
   const [showNotification, setShowNotification] = useState<boolean>(false)

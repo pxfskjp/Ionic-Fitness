@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonGrid, IonRow, IonSearchbar, IonProgressBar, IonButtons, IonButton, IonIcon, IonText } from '@ionic/react';
 import Product from '../../components/store/Product';
 import { cart } from 'ionicons/icons';
-import './Store.css';
 import { db, firebase } from '../../firebase';
 
 const Store: React.FC = () => {

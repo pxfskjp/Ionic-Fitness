@@ -1,19 +1,12 @@
-.tools {
+.homepage-bg {
     /* display: block; */
-    --background: url('../mountain.jpg') no-repeat center center / cover;
-
+    --background: url('./gymjunkie.jpeg') no-repeat center center / cover;
 }
-
-.img {
+.logo {
     height: 75px;
      width: 75px; 
      margin-left: auto; 
      margin-right: auto; 
      margin-top: 75px; 
      margin-bottom: 100px;
-}
-
-.inputs {
-    --color: white;
-    --background: transparent;
 }

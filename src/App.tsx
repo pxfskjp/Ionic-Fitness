@@ -10,12 +10,12 @@ import {
   IonTabs
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, cart, home, cog, person } from 'ionicons/icons';
-import HomePage from './pages/home/HomePage';
+import { cart, home, cog, person } from 'ionicons/icons';
+import Home from './pages/home/Home';
 import Store from './pages/store/Store';
 import Checkout from './pages/store/Checkout';
 import Billing from './pages/store/Billing';
-import Tab2 from './pages/Profile';
+import Profile from './pages/profile/Profile';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -35,19 +35,18 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import SettingsPage from './pages/settings/SettingsPage';
-import AccountPage from './pages/settings/account/AccountPage';
-import NewPostPage from './pages/home/newpost/NewPostPage';
-import ViewPostModal from './pages/home/post/ViewPostPage';
-import Register from './pages/Register';
-import LoadPage from './pages/LoadPage';
-import Login from './pages/Login';
-import EditProfile from './pages/EditProfile';
+import Settings from './pages/settings/Settings';
+import Account from './pages/settings/account/Account';
+import NewPostPage from './pages/home/newpost/NewPost';
+import ViewPostModal from './pages/home/post/ViewPost';
+import Register from './pages/profile/Register';
+import Main from './pages/Main';
+import Login from './pages/profile/Login';
+import EditProfile from './pages/profile/EditProfile';
 import firebase from 'firebase';
 
 localStorage.removeItem("cart");
 localStorage.removeItem("quantity");
-
 
 const App: React.FC = () => {
 
@@ -67,12 +66,12 @@ const App: React.FC = () => {
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route path="/home" component={HomePage} exact={true} />
+          <Route path="/home" component={Home} exact={true} />
           <Route path="/home/newpost" component={NewPostPage} exact={true}/>
           <Route path="/home/post" component={ViewPostModal} exact={true}/>
-          <Route path="/profile" component={Tab2} exact={true} />
-          <Route path="/settings" component={SettingsPage} exact={true} />
-          <Route path="/settings/account" component={AccountPage} exact={true} />
+          <Route path="/profile" component={Profile} exact={true} />
+          <Route path="/settings" component={Settings} exact={true} />
+          <Route path="/settings/account" component={Account} exact={true} />
           <Route path="/" render={() => <Redirect to="/home" />} exact={true} />
           <Redirect exact from ="/" to={isLoggedIn ? "/home" : "/loadpage"}/>
           <Route path="/store" component={Store} />
@@ -80,7 +79,7 @@ const App: React.FC = () => {
           <Route path="/billing" component={Billing} />
           <Route path="/register" component={Register} exact={true}/>
           <Route path="/login" component={Login} exact={true}/>
-          <Route path="/loadpage" component={LoadPage} exact={true}/>
+          <Route path="/loadpage" component={Main} exact={true}/>
           <Route path="/editprofile" component={EditProfile} exact={true}/>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">

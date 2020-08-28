@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButtons, IonList, IonItem, IonLabel, IonIcon, IonToast, IonButton } from '@ionic/react';
-import './Checkout.css';
 import { arrowBack } from 'ionicons/icons';
 import { PayPal, PayPalConfiguration, PayPalPayment } from '@ionic-native/paypal';
 import ListProduct, { getAmount } from '../../components/store/ListProduct';

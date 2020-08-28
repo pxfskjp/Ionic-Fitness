@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonToggle, IonAlert, IonIcon } from '@ionic/react';
 import { moon } from 'ionicons/icons'
-import './SettingsPage.css';
 import firebase from 'firebase';
 import { useHistory } from 'react-router';
 
