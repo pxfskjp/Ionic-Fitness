@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonItemGroup, IonItem, IonLabel, IonText, IonTextarea, IonImg, IonProgressBar, IonIcon, IonPage } from '@ionic/react'
 import useFirebaseUpload from "../../../hooks/useFirebaseUpload";
 import useFirebaseDatabasePush from "../../../hooks/useFirebaseDatabasePush"
-import { imageOutline } from 'ionicons/icons'
+import { imageOutline, arrowBack } from 'ionicons/icons'
 import './NewPost.css'
 import { useHistory } from 'react-router';
 
@@ -23,14 +23,16 @@ const NewPost: React.FC = () => {
         <IonPage>
             <IonHeader translucent>
                 <IonToolbar>
-                    <IonTitle size="small">Create New Post</IonTitle>
-                    <IonButtons slot="end">
+                    <IonButtons slot="start">
                         <IonButton onClick={() => {
                             history.push('/home')
                             setDataResponse(null)
                             setCaption('')
-                        }}>Close</IonButton>
+                        }} >
+                            <IonIcon slot="icon-only" icon={arrowBack} />
+                        </IonButton>
                     </IonButtons>
+                    <IonTitle>Create New Post</IonTitle>
                 </IonToolbar>
             </IonHeader>
             <IonContent>

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonLabel } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonLabel, IonButtons, IonButton, IonIcon } from '@ionic/react';
 import Header from '../../../components/settings/account/Header';
 import ChangePasswordModal from '../../../components/settings/account/ChangePasswordModal';
+import { arrowBack } from 'ionicons/icons';
 
 const Account: React.FC = () => {
   const [showPasswordModal, setShowPasswordModal] = useState(false)
@@ -10,7 +11,12 @@ const Account: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <Header />
+          <IonButtons slot="start">
+            <IonButton routerLink="/settings">
+              <IonIcon slot="icon-only" icon={arrowBack} />
+            </IonButton>
+          </IonButtons>
+          <IonTitle>Account Settings</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
@@ -23,7 +29,6 @@ const Account: React.FC = () => {
           <IonLabel>Change Password</IonLabel>
         </IonItem>
         <ChangePasswordModal showPasswordModal={showPasswordModal} setShowPasswordModal={setShowPasswordModal} />
-
       </IonContent>
     </IonPage>
   );
