@@ -10,8 +10,6 @@ interface Props {
 }
 
 const Success: React.FC<Props> = (props: Props) => {
-    let text;
-
     return (
         <IonModal isOpen={props.visible}>
             <IonContent>

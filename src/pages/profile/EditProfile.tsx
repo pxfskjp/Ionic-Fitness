@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonButton, IonContent, IonFab, IonFabButton, IonIcon, IonText, IonList, IonItem, IonLabel, IonInput, IonBackButton, IonButtons, IonThumbnail, IonProgressBar } from '@ionic/react';
 import { imageOutline, logoFacebook, logoInstagram, logoGoogle } from 'ionicons/icons';
 import { db, firebase } from '../../firebase';
 import useFirebaseUpload from "../../hooks/useFirebaseUpload";
-import { getEnabledCategories } from 'trace_events';
 import { useHistory } from 'react-router';
 
 const EditProfile: React.FC = () => {

@@ -35,7 +35,7 @@ const Store: React.FC = () => {
           <IonTitle>Store</IonTitle>
           <IonProgressBar type="indeterminate" hidden={loaded}></IonProgressBar>
           <IonButtons slot="end">
-            <IonButton routerLink="/checkout">
+            <IonButton routerLink="/store/checkout">
               <IonText>Checkout</IonText>
               <IonIcon slot="end" icon={cart} />
             </IonButton>

@@ -1,6 +1,6 @@
 import { db, firebase } from '../firebase'
 
-const FirebaseFileDatabaseApi = (firstName: string, lastName: string, phoneNumber: string, emailAddress: string, streetNumber: string, street: string, suburb: string, postcode: string, city: string, paid: number): [
+const FirebaseFileDatabaseApi = (firstName: string, lastName: string, phoneNumber: string, emailAddress: string, streetNumber: string, street: string, suburb: string, postcode: string, city: string): [
     Function
 ] => {
     const pushTransactions = () => {
@@ -12,8 +12,7 @@ const FirebaseFileDatabaseApi = (firstName: string, lastName: string, phoneNumbe
             phoneNumber: phoneNumber,
             emailAddress: emailAddress,
             address: streetNumber + " " + street + ", " + suburb + ", " + city + " " + postcode,
-            order: getCart(),
-            paid: paid
+            order: getCart()
         })
         return id
     }

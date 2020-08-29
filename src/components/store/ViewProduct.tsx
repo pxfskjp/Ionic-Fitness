@@ -12,7 +12,7 @@ interface Props {
 const ViewProduct: React.FC<Props> = (props: Props) => {
     return (
         <IonModal isOpen={props.visible}>
-            <IonHeader translucent>
+            <IonHeader>
                 <IonToolbar>
                     <IonButtons slot="start">
                         <IonButton onClick={() => { props.setVisible(false) }}>
@@ -33,7 +33,7 @@ const ViewProduct: React.FC<Props> = (props: Props) => {
                                     <IonButton routerLink="/store" color={getCart(props.item) ? "success" : "primary"} expand="block" fill="solid" onClick={() => { toggleCart(props.item); }}>{getCart(props.item) ? "Added to cart" : "Buy"}</IonButton>
                                 </IonCol>
                                 <IonCol size="6">
-                                    <IonButton color="secondary" expand="block" fill="solid" onClick={() => { props.setVisible(false) }} routerLink="../checkout">Checkout</IonButton>
+                                    <IonButton color="secondary" expand="block" fill="solid" onClick={() => { props.setVisible(false) }} routerLink="./store/checkout">Checkout</IonButton>
                                 </IonCol>
                             </IonRow>
                         </IonGrid>
