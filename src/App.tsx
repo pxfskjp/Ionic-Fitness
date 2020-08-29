@@ -54,9 +54,7 @@ const App: React.FC = () => {
   
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
-      
       setIsLoggedIn(true)
-      console.log("user signed in")
     }
   });
 

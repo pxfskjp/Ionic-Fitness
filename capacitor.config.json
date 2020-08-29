@@ -1,13 +1,8 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "fitness-app",
-  "bundledWebRuntime": false,
-  "npmClient": "npm",
-  "webDir": "build",
   "plugins": {
-    "SplashScreen": {
-      "launchShowDuration": 0
+    "GoogleAuth": {
+    "scopes": ["profile","email"],
+    "serverClientId": "408713018304-2fp9fl7rrqd6rrhoch7c4s9gtbde39jb.apps.googleusercontent.com"
     }
-  },
-  "cordova": {}
+    }
 }

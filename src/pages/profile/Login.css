@@ -17,3 +17,9 @@
     --color: white;
     --background: transparent;
 }
+
+.or{
+    color: white;
+    display: block;
+    text-align: center;
+}

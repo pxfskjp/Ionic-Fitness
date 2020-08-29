@@ -18,7 +18,6 @@ const Profile: React.FC = () => {
 
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      console.log("User is signed in.")
       // User is signed in
       db.collection('users').doc(user.uid).get().then(doc => {
         setEmail(doc.get('email'))
