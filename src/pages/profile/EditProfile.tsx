@@ -1,40 +1,47 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonButton, IonContent, IonFab, IonFabButton, IonIcon, IonText, IonList, IonItem, IonLabel, IonInput, IonBackButton, IonButtons, IonThumbnail, IonProgressBar } from '@ionic/react';
 import { imageOutline, logoFacebook, logoInstagram, logoGoogle } from 'ionicons/icons';
 import { db, firebase } from '../../firebase';
 import useFirebaseUpload from "../../hooks/useFirebaseUpload";
+import { getEnabledCategories } from 'trace_events';
+import { useHistory } from 'react-router';
 
 const EditProfile: React.FC = () => {
-  const [email, setEmail] = useState<string>('')
-  const [firstName, setFirstname] = useState<string>('')
-  const [lastName, setLastname] = useState<string>('')
-  const [birthday, setBirthday] = useState<string>('')
-  const [facebook, setFacebook] = useState<string>('')
-  const [instagram, setInstagram] = useState<string>('')
-  const [google, setGoogle] = useState<string>('')
-  const [profilepic, setProfilepic] = useState<string>('')
-
-  const [{ dataResponse, isLoading, progress }, setFileData] = useFirebaseUpload();
 
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
-      console.log("User is signed in.")
-      // User is signed in
+      //User is signed in.
       db.collection('users').doc(user.uid).get().then(doc => {
-        setEmail(doc.get('email'))
-        setFirstname(doc.get('firstName'))
-        setLastname(doc.get('lastName'))
-        setBirthday(doc.get('birthday'))
-        setFacebook(doc.get('facebook'))
-        setInstagram(doc.get('instagram'))
-        setGoogle(doc.get('google'))
-        setProfilepic(doc.get('image'))
+        if(email == null) setEmail(doc.get('email')); 
+        if(firstName == null) setFirstname(doc.get('firstName')); 
+        if(lastName == null) setLastname(doc.get('lastName')); 
+        if(birthday == null) setBirthday(doc.get('birthday')); 
+        if(facebook == null) setFacebook(doc.get('facebook')); 
+        if(instagram == null) setInstagram(doc.get('instagram')); 
+        if(google == null) setGoogle(doc.get('google')); 
+        if(profilepic == null) setProfilepic(doc.get("image")); 
       });
     } else {
-      console.log("No user is signed in.")
       // No user is signed in.
     }
   });
+
+  const history = useHistory()
+  
+  const [email, setEmail] = useState<string | null>(null)
+  const [firstName, setFirstname] = useState<string | null>(null)
+  const [lastName, setLastname] = useState<string | null>(null)
+  const [birthday, setBirthday] = useState<string | null >(null)
+  const [facebook, setFacebook] = useState<string | null >(null)
+  const [instagram, setInstagram] = useState<string | null>(null)
+  const [google, setGoogle] = useState<string | null>(null)
+  const [profilepic, setProfilepic] = useState<string | null>(null)
+
+
+  const [{ dataResponse, isLoading, progress }, setFileData] = useFirebaseUpload();
+
+  
+  
 
   function commitChanges() {
     firebase.auth().onAuthStateChanged(function (user) {
@@ -42,6 +49,7 @@ const EditProfile: React.FC = () => {
         var img = profilepic
         if (dataResponse?.downloadUrl !== undefined) {
           img = dataResponse?.downloadUrl;
+        }
           try {
             db.collection('users').doc(user.uid).set({
               uid: user.uid,
@@ -53,11 +61,11 @@ const EditProfile: React.FC = () => {
               instagram: instagram,
               google: google,
               image: img,
-            })
+            }).then(()=> history.push('/profile'))
+            return;
           } catch (error) {
             console.log(error.message)
           }
-        }
       }
     });
   }
@@ -90,23 +98,23 @@ const EditProfile: React.FC = () => {
         <IonList>
           <IonItem>
             <IonLabel position="stacked">First Name <IonText color="danger"></IonText></IonLabel>
-            <IonInput value={firstName}></IonInput>
+            <IonInput value={firstName} onIonChange={e => setFirstname(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem>
             <IonLabel position="stacked">Last Name</IonLabel>
-            <IonInput value={lastName}></IonInput>
+            <IonInput value={lastName} onIonChange={e => setLastname(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem>
             <IonLabel position="stacked">Email Address</IonLabel>
-            <IonInput value={email}></IonInput>
+            <IonInput type = "email" value={email} onIonChange={e => setEmail(e.detail.value!)}></IonInput>
           </IonItem>
           <IonItem>
             <IonLabel position="stacked">Birthday</IonLabel>
-            <IonInput value={birthday}></IonInput>
+            <IonInput type = "date" value={birthday} onIonChange={e => setBirthday(e.detail.value!)}></IonInput>
           </IonItem>
-          <IonItem><IonIcon icon={logoFacebook}></IonIcon><IonInput value={facebook}></IonInput></IonItem>
-          <IonItem><IonIcon icon={logoInstagram}></IonIcon><IonInput value={instagram}></IonInput></IonItem>
-          <IonItem><IonIcon icon={logoGoogle}></IonIcon><IonInput value={google}></IonInput></IonItem>
+          <IonItem><IonIcon icon={logoFacebook}></IonIcon><IonInput value={facebook} onIonChange={e => setFacebook(e.detail.value!)}></IonInput></IonItem>
+          <IonItem><IonIcon icon={logoInstagram}></IonIcon><IonInput value={instagram} onIonChange={e => setInstagram(e.detail.value!)}></IonInput></IonItem>
+          <IonItem><IonIcon icon={logoGoogle}></IonIcon><IonInput value={google} onIonChange={e => setGoogle(e.detail.value!)}></IonInput></IonItem>
         </IonList>
         <IonButton expand="block" onClick={commitChanges}>Confirm Changes</IonButton>
         <IonButton expand="block" color="danger" href="profile">Cancel</IonButton>

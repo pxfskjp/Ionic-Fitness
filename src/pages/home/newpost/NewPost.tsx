@@ -5,18 +5,32 @@ import useFirebaseDatabasePush from "../../../hooks/useFirebaseDatabasePush"
 import { imageOutline, arrowBack } from 'ionicons/icons'
 import './NewPost.css'
 import { useHistory } from 'react-router';
+import { db } from '../../../firebase';
+import firebase from 'firebase'
 
 const NewPost: React.FC = () => {
 
     const history = useHistory()
 
+    const[name, setName] = useState<string>('guest')
+
     // need username
     const [caption, setCaption] = useState<string>('')
     const [{ dataResponse, isLoading, isError, progress }, setFileData, setDataResponse] = useFirebaseUpload();
-    const [pushPosts] = useFirebaseDatabasePush(caption, dataResponse?.downloadUrl)
+    const [pushPosts] = useFirebaseDatabasePush(name, caption, dataResponse?.downloadUrl)
+
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+          // User is signed in
+          db.collection('users').doc(user.uid).get().then(doc => {
+            setName(doc.get('firstName'))
+          })
+        }
+      });
 
     const handlePostUpload = () => {
-        pushPosts()
+        pushPosts();
+        history.push('/home')
     }
 
     return (
