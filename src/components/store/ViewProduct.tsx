@@ -1,6 +1,5 @@
 import React from 'react';
 import { IonCard, IonCardSubtitle, IonCardTitle, IonCardContent, IonImg, IonModal, IonButton, IonToolbar, IonButtons, IonHeader, IonIcon, IonContent, IonText, IonGrid, IonCol, IonRow } from '@ionic/react';
-import './ViewProduct.css';
 import { arrowBack } from 'ionicons/icons';
 
 interface Props {

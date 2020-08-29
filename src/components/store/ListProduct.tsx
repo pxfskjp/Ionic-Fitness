@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { IonItem, IonThumbnail, IonLabel, IonButtons, IonImg, IonIcon, IonButton, IonActionSheet, IonItemSliding, IonItemOptions, IonItemOption } from '@ionic/react';
 import { add, remove } from 'ionicons/icons';
-import './ListProduct.css';
 
 interface Props {
     name: string;

@@ -4,7 +4,7 @@ import { logoFacebook, logoInstagram, logoGoogle } from 'ionicons/icons';
 import { db, firebase } from '../../firebase'
 import './Register'
 
-const Tab2: React.FC = () => {
+const Profile: React.FC = () => {
   const [email, setEmail] = useState<string>('')
   const [firstName, setFirstname] = useState<string>('')
   const [lastName, setLastname] = useState<string>('')
@@ -76,4 +76,4 @@ const Tab2: React.FC = () => {
   );
 };
 
-export default Tab2;
+export default Profile;
