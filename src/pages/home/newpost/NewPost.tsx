@@ -32,7 +32,6 @@ const NewPost: React.FC = () => {
         pushPosts();
         history.push('/home')
     }
-
     return (
         <IonPage>
             <IonHeader translucent>
