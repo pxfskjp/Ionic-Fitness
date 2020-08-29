@@ -17,7 +17,12 @@ const Post: React.FC<Props> = ({ username, caption, imageURL }: Props) => {
     const history = useHistory()
 
     return (
-        <IonCard>
+        <IonCard onClick={() => {
+            context.username = username
+            context.caption = caption
+            context.imageURL = imageURL
+            savePost(context.username, context.caption, context.imageURL).then(() => history.push('/home/post'))
+        }}>
             <IonCardHeader style={{ paddingLeft: "0px", paddingBottom: "0px" }}>
                 <IonItem>
                     <div className="post-header-container">
@@ -32,12 +37,7 @@ const Post: React.FC<Props> = ({ username, caption, imageURL }: Props) => {
             </IonCardHeader>
             <IonCardContent >
                 <IonCardSubtitle style={{ paddingTop: "10px", paddingBottom: "5px" }}>{caption}</IonCardSubtitle>
-                <IonImg src={imageURL} onClick={() => {
-                    context.username = username
-                    context.caption = caption
-                    context.imageURL = imageURL
-                    savePost(context.username, context.caption, context.imageURL).then(() => history.push('/home/post'))
-                }} />
+                <IonImg src={imageURL} />
             </IonCardContent>
         </IonCard>
     )

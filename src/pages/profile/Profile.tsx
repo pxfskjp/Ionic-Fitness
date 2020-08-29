@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonButtons, IonLabel, IonItem, IonList, IonText, IonIcon, IonImg } from '@ionic/react';
-import { logoFacebook, logoInstagram, logoGoogle } from 'ionicons/icons';
+import { logoFacebook, logoInstagram, logoGoogle, create } from 'ionicons/icons';
 import { db, firebase } from '../../firebase'
 import './Register'
 
@@ -41,7 +41,10 @@ const Profile: React.FC = () => {
         <IonToolbar>
           <IonTitle>Profile</IonTitle>
           <IonButtons slot="end">
-            <IonButton size="small" expand="block" href="editprofile" color="dark">Edit</IonButton>
+            <IonButton routerLink="/editprofile">
+              <IonText>Edit</IonText>
+              <IonIcon slot="end" icon={create} />
+            </IonButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>

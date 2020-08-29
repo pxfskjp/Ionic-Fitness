@@ -85,6 +85,7 @@ const App: React.FC = () => {
         <IonTabBar slot="bottom">
           <IonTabButton tab="Home" href="/home">
             <IonIcon icon={home} />
+            <IonLabel>Home</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab2" href="/profile">
             <IonIcon icon={person} />
@@ -96,6 +97,7 @@ const App: React.FC = () => {
           </IonTabButton>
           <IonTabButton tab="settings" href="/settings">
             <IonIcon icon={cog} />
+            <IonLabel>Settings</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

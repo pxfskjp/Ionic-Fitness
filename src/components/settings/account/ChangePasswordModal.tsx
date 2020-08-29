@@ -1,5 +1,6 @@
 import React from 'react'
-import { IonModal, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonItem, IonLabel, IonInput, IonText, IonItemGroup, IonItemDivider } from '@ionic/react'
+import { IonModal, IonHeader, IonToolbar, IonTitle, IonButtons, IonButton, IonContent, IonItem, IonLabel, IonInput, IonText, IonItemGroup, IonItemDivider, IonIcon } from '@ionic/react'
+import { arrowBack } from 'ionicons/icons';
 import './ChangePasswordModal.css'
 
 interface Props {
@@ -12,10 +13,12 @@ const ChangePasswordModal: React.FC<Props> = (props: Props) => {
     <IonModal isOpen={props.showPasswordModal}>
       <IonHeader translucent>
         <IonToolbar>
-          <IonTitle size="small">Change Password</IonTitle>
-          <IonButtons slot="end">
-            <IonButton onClick={() => props.setShowPasswordModal(false)}>Close</IonButton>
+          <IonButtons slot="start">
+            <IonButton onClick={() => props.setShowPasswordModal(false)} >
+              <IonIcon slot="icon-only" icon={arrowBack} />
+            </IonButton>
           </IonButtons>
+          <IonTitle>Change Password</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>

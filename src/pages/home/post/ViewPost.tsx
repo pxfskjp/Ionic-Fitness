@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
-import { IonHeader, IonToolbar, IonButtons, IonButton, IonContent, IonImg, IonItem, IonText, IonPage } from '@ionic/react'
+import { IonHeader, IonToolbar, IonButtons, IonButton, IonContent, IonImg, IonItem, IonText, IonPage, IonIcon } from '@ionic/react'
+import { arrowBack } from 'ionicons/icons';
 import { PostContext } from '../../../state/PostState'
 import { useHistory } from 'react-router'
 
@@ -13,10 +14,9 @@ const ViewPostModal: React.FC = () => {
             <IonHeader translucent>
                 <IonToolbar>
                     <IonButtons slot="start">
-                        <IonButton onClick={() => {
-                            history.push('/home')
-                            context.imageURL = ''
-                        }}>Close</IonButton>
+                        <IonButton onClick={() => {history.push('/home'); context.imageURL = ''}}>
+                            <IonIcon slot="icon-only" icon={arrowBack} />
+                        </IonButton>
                     </IonButtons>
                 </IonToolbar>
             </IonHeader>
