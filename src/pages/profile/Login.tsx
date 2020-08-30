@@ -4,7 +4,6 @@ import './Login.css';
 import firebase from 'firebase';
 import { useHistory } from 'react-router';
 import "@codetrix-studio/capacitor-google-auth";
-import { Plugins } from '@capacitor/core';
 import { db } from '../../firebase';
 import { logoGoogle } from 'ionicons/icons';
 
@@ -19,10 +18,11 @@ const Login: React.FC = () => {
   function logIn() {
     firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
       // Handle Errors here.
-       var errorCode = error.code;
-       var errorMessage = error.message;
+      //  var errorCode = error.code;
+      //  var errorMessage = error.message;
       // ...
-    });
+    }).then(()=> history.push('/home'))
+    return;
   }
 
   function logInWithGoogle(){
@@ -48,12 +48,12 @@ const Login: React.FC = () => {
       // ...
     }).catch(function(error) {
       // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
+      // var errorCode = error.code;
+      // var errorMessage = error.message;
       // The email of the user's account used.
-      var email = error.email;
+      // var email = error.email;
       // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
+      // var credential = error.credential;
       // ...
     });
   }

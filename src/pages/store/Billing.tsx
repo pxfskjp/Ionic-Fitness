@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonItem, IonInput, IonCard, IonLabel, IonCardTitle, IonButton, IonButtons, IonIcon, IonCardContent, IonProgressBar, IonToast } from '@ionic/react';
 import useFirebaseDatabasePushTransaction from "../../hooks/useFirebaseDatabasePushTransaction"
 import Success from '../../components/store/Success';
+import { db, firebase } from '../../firebase'
 import './Billing.css';
 import { arrowBack } from 'ionicons/icons';
+
+var autofilled = false
 
 const Billing: React.FC = () => {
     const [firstName, setFirstName] = useState('');
@@ -21,10 +24,23 @@ const Billing: React.FC = () => {
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
 
-    const [pushTransaction] = useFirebaseDatabasePushTransaction(firstName, lastName, phoneNumber, emailAddress, streetNumber, street, suburb, postcode, city, NaN)
+    const [pushTransaction] = useFirebaseDatabasePushTransaction(firstName, lastName, phoneNumber, emailAddress, streetNumber, street, suburb, postcode, city)
 
     const handleTransactionUpload = () => {
         setId(pushTransaction())
+    }
+
+    if (!autofilled) {
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                db.collection('users').doc(user.uid).get().then(doc => {
+                    setFirstName(doc.get('firstName'))
+                    setLastName(doc.get('lastName'))
+                    setEmailAddress(doc.get('email'))
+                })
+                autofilled = true
+            }
+        });
     }
 
     function validInput() {
@@ -44,7 +60,7 @@ const Billing: React.FC = () => {
             <IonHeader>
                 <IonToolbar>
                     <IonButtons slot="start">
-                        <IonButton routerLink="/checkout" >
+                        <IonButton routerLink="/store/checkout" >
                             <IonIcon slot="icon-only" icon={arrowBack} />
                         </IonButton>
                     </IonButtons>
@@ -59,11 +75,11 @@ const Billing: React.FC = () => {
                     </IonCardContent>
                     <IonItem>
                         <IonLabel position="floating">First Name</IonLabel>
-                        <IonInput value={firstName} onIonChange={e => setFirstName(e.detail.value!)}> </IonInput>
+                        <IonInput disabled={autofilled} value={firstName} onIonChange={e => setFirstName(e.detail.value!)}> </IonInput>
                     </IonItem>
                     <IonItem>
                         <IonLabel position="floating">Last Name</IonLabel>
-                        <IonInput value={lastName} onIonChange={e => setLastName(e.detail.value!)}></IonInput>
+                        <IonInput disabled={autofilled} value={lastName} onIonChange={e => setLastName(e.detail.value!)}></IonInput>
                     </IonItem>
                     <IonItem>
                         <IonLabel position="floating" >Phone Number</IonLabel>
@@ -71,7 +87,7 @@ const Billing: React.FC = () => {
                     </IonItem>
                     <IonItem>
                         <IonLabel position="floating">Email Address</IonLabel>
-                        <IonInput value={emailAddress} onIonChange={e => setEmailAddress(e.detail.value!)} type="email"></IonInput>
+                        <IonInput disabled={autofilled} value={emailAddress} onIonChange={e => setEmailAddress(e.detail.value!)} type="email"></IonInput>
                     </IonItem>
                 </IonCard>
                 <IonCard>
@@ -99,7 +115,7 @@ const Billing: React.FC = () => {
                         <IonInput value={city} onIonChange={e => setCity(e.detail.value!)}></IonInput>
                     </IonItem>
                 </IonCard>
-                <IonButton disabled={paying} id="wide-button" color="success" expand="block" fill="solid" onClick={() => { if (validInput()) { setPaying(true); handleTransactionUpload(); setSuccess(order()); setPaying(false); } else {setError(true)} }}>Confirm</IonButton>
+                <IonButton disabled={paying} id="wide-button" color="success" expand="block" fill="solid" onClick={() => { if (validInput()) { setPaying(true); handleTransactionUpload(); setSuccess(order()); setPaying(false); } else { setError(true) } }}>Confirm</IonButton>
                 <IonToast isOpen={error} color="danger" onDidDismiss={() => setError(false)} message="Please fill out all the fields" duration={2000} position="bottom" />
                 <Success id={id} visible={success} setVisible={setSuccess} />
             </IonContent>

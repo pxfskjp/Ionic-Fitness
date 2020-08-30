@@ -95,7 +95,7 @@ function displayCart(render: any, setRender: any, pay: any) {
                     <IonLabel slot="end">${Math.round(total * 100) / 100}</IonLabel>
                 </IonItem>
             </IonList>
-            <IonButton id="wide-button" color="primary" expand="block" fill="solid" routerLink="/billing">Pay</IonButton>
+            <IonButton id="wide-button" color="primary" expand="block" fill="solid" routerLink="./billing">Pay</IonButton>
             <IonButton id="wide-button" color="secondary" expand="block" fill="solid" onClick={() => pay(total)}>Pay with PayPal</IonButton>
             </div>
         );
