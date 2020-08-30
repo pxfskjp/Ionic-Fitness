@@ -40,7 +40,7 @@ const Profile: React.FC = () => {
         <IonToolbar>
           <IonTitle>Profile</IonTitle>
           <IonButtons slot="end">
-            <IonButton routerLink="/editprofile">
+            <IonButton routerLink="/profile/editprofile">
               <IonText>Edit</IonText>
               <IonIcon slot="end" icon={create} />
             </IonButton>

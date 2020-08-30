@@ -28,7 +28,7 @@ const MainTabs: React.FC = () => {
                 <Route path="/store" component={Store} />
                 <Route path="/store/checkout" component={Checkout} />
                 <Route path="/store/billing" component={Billing} />
-                <Route path="/editprofile" component={EditProfile} exact={true} />
+                <Route path="/profile/editprofile" component={EditProfile} exact={true} />
             </IonRouterOutlet>
             <IonTabBar slot="bottom">
                 <IonTabButton tab="Home" href="/home">

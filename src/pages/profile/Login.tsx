@@ -42,7 +42,7 @@ const Login: React.FC = () => {
           instagram: '',
           google: user?.displayName,
           image: './assets/images/defaultProfilePic.png'
-        }).then(()=> history.push('/home'))
+        })
         return;
       }  
       // ...
@@ -55,7 +55,7 @@ const Login: React.FC = () => {
       // The firebase.auth.AuthCredential type that was used.
       // var credential = error.credential;
       // ...
-    });
+    }).then(()=> history.push('/home'))
   }
 
   return (
